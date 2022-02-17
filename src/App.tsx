@@ -1,10 +1,11 @@
 import './App.css';
+import { Home } from './pages';
 
 function App() {
   return (
-    <div className="App text-3xl font-bold underline">
-     Hello World !
-    </div>
+    <>
+      <Home />
+    </>
   );
 }
 
