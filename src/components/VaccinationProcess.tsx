@@ -22,7 +22,7 @@ const VaccinationProcess: React.FC = () => {
                         </div>
                     </div>
                     <div className="xl:w-5/12 flex flex-col justify-center align-start  lg:py-6 xl:py-12">
-                        <div className="h-20">
+                        <div className="lg:h-20 md:h-20 h-45">
                             <p className="text-xl font-black ">The practical aspect of vaccination against the emerging corona virus: the path of the future vaccine</p>
                         </div>
                         <div className="h-60 ">

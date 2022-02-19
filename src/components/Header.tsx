@@ -4,7 +4,7 @@ const Header: React.FC = () => {
     <header className="flex justify-between items-center py-4 md:py-8">
       {/* <!-- logo - start --> */}
       <a href="/" className="inline-flex items-center text-black-800 text-2xl md:text-3xl font-bold gap-2" aria-label="logo">
-        <img src={logo} alt="" className="w-16 h-auto text-indigo-500" />
+        <img src={logo} alt="" className="lg:w-16 w-12 h-auto text-indigo-500" />
         Morocco Vaccination
       </a>
       {/* button */}
