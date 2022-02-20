@@ -7,7 +7,7 @@ import { Layout } from './pages';
 function App() {
   const [takeShot, setTakeShot] = useState(false)
   return (
-    <div className="app">
+    <div className="app min-h-screen">
       <div className=" lg:pb-12">
         <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
           <Header setTakeShot={setTakeShot} takeShot={takeShot} />
