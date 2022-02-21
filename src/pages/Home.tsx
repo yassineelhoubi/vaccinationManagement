@@ -1,4 +1,4 @@
-import { Features, Header, VaccinationProcess, Welcome } from "../components"
+import { VaccinationProcess, Welcome } from "../components"
 
 
 const Home = () => {
