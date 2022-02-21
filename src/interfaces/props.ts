@@ -5,6 +5,9 @@ export interface headerProps {
 export interface AgeProps {
     setAge: (val: string | null) => void;
 }
+export interface ShotProps {
+    setShot: (val: number) => void;
+}
 export interface NextPrevBtnProps {
     name: string
 }
