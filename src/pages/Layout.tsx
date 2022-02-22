@@ -33,10 +33,10 @@ const Layout = () => {
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">
                     <div onClick={() => setActiveStep(activeStep - 1)}>
-                        <NextPrevBtn name="Previous" />
+                        {activeStep > 0 && < NextPrevBtn name="Previous" />}
                     </div>
                     <div onClick={() => setActiveStep(activeStep + 1)}>
-                        <NextPrevBtn name="Next" />
+                        {activeStep < steps.length-1 &&<NextPrevBtn name="Next" />}
                     </div>
                 </div>
             </div>
