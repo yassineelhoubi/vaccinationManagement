@@ -4,4 +4,4 @@ export { Welcome } from './Welcome';
 export { Age } from './Age';
 export { NextPrevBtn } from './NextPrevBtn';
 export { ChoiceShot } from './ChoiceShot';
-export { Disease } from './Disease';
+export { DiseaseOrTreatments } from './DiseaseOrTreatments';
