@@ -9,6 +9,10 @@ export interface ShotProps {
     setShot: (val: number) => void;
     shot: number
 }
+export interface DiseaseOrTreatmentsProps {
+    setDiseaseOrTreatments: (val: boolean) => void;
+    diseaseOrTreatments: boolean;
+}
 export interface NextPrevBtnProps {
     name: string
 }
