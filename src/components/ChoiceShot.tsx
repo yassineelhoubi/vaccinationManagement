@@ -7,11 +7,11 @@ import React from 'react';
 import { ShotProps } from "../interfaces"
 const ChoiceShot: React.FC<ShotProps> = ({ setShot, shot }) => {
     return (
-        <FormControl >
+        <FormControl className="">
             <FormLabel className="text-wider mb-3">Choice Your Shot</FormLabel>
             <RadioGroup
                 onChange={(e) => setShot(Number(e.target.value))}
-                className="flex justify-center"
+                className="flex justify-center mb-6"
                 value={shot}
                 row
                 aria-labelledby="demo-row-radio-buttons-group-label"

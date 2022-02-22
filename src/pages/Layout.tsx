@@ -1,4 +1,4 @@
-import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments } from "../components"
+import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects } from "../components"
 import { useState } from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -12,6 +12,7 @@ const Layout = () => {
     const [activeStep, setActiveStep] = useState<number>(0)
     const [shot, setShot] = useState<number>(0)
     const [diseaseOrTreatments, setDiseaseOrTreatments] = useState<boolean>(false)
+    const [sideEffects, setSideEffects] = useState<boolean>(false)
     return (
         <div className=" flex justify-center items-center">
             <div className="  drop-shadow-2xl h-100 md:w-2/3 lg:w-1/2 w-full bg-sky-100  flex flex-col justify-center items-center rounded">
@@ -28,6 +29,7 @@ const Layout = () => {
                     {activeStep == 0 && <Age setAge={setAge} />}
                     {activeStep == 1 && <ChoiceShot setShot={setShot} shot={shot} />}
                     {activeStep == 1 && shot == 1 ? <DiseaseOrTreatments setDiseaseOrTreatments={setDiseaseOrTreatments} diseaseOrTreatments={diseaseOrTreatments} /> : null}
+                    {activeStep == 1 && (shot == 2 || shot == 3) ? <SideEffects setSideEffects={setSideEffects} sideEffects={sideEffects} /> : null}
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">
                     <div onClick={() => setActiveStep(activeStep - 1)}>

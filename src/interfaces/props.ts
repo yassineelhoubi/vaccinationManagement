@@ -13,6 +13,10 @@ export interface DiseaseOrTreatmentsProps {
     setDiseaseOrTreatments: (val: boolean) => void;
     diseaseOrTreatments: boolean;
 }
+export interface SideEffectsProps {
+    setSideEffects: (val: boolean) => void;
+    sideEffects: boolean;
+}
 export interface NextPrevBtnProps {
     name: string
 }
