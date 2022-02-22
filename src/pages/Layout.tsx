@@ -25,7 +25,7 @@ const Layout = () => {
                 </Box>
                 <div className="h-4/5 w-4/5 flex flex-col w-full h-full items-center  justify-center">
                     {activeStep == 0 && <Age setAge={setAge} />}
-                    {activeStep == 1 && <ChoiceShot setShot={setShot} />}
+                    {activeStep == 1 && <ChoiceShot setShot={setShot} shot={shot}/>}
                     {activeStep == 1 && shot == 1 ? <DiseaseOrTreatments /> : null}
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">

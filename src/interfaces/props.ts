@@ -7,6 +7,7 @@ export interface AgeProps {
 }
 export interface ShotProps {
     setShot: (val: number) => void;
+    shot: number
 }
 export interface NextPrevBtnProps {
     name: string
