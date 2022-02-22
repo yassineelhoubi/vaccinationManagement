@@ -1,4 +1,4 @@
-import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects } from "../components"
+import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN } from "../components"
 import { useState } from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -7,7 +7,7 @@ import StepLabel from '@mui/material/StepLabel';
 
 
 const Layout = () => {
-    const steps = ['Age', 'Shot'];
+    const steps = ['Age', 'Vaccine', "CIN" , "Validation"];
     const [age, setAge] = useState<string | null>(null);
     const [activeStep, setActiveStep] = useState<number>(0)
     const [shot, setShot] = useState<number>(0)
@@ -30,13 +30,14 @@ const Layout = () => {
                     {activeStep == 1 && <ChoiceShot setShot={setShot} shot={shot} />}
                     {activeStep == 1 && shot == 1 ? <DiseaseOrTreatments setDiseaseOrTreatments={setDiseaseOrTreatments} diseaseOrTreatments={diseaseOrTreatments} /> : null}
                     {activeStep == 1 && (shot == 2 || shot == 3) ? <SideEffects setSideEffects={setSideEffects} sideEffects={sideEffects} /> : null}
+                    {activeStep == 2 && <UserFormCIN />}
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">
                     <div onClick={() => setActiveStep(activeStep - 1)}>
                         {activeStep > 0 && < NextPrevBtn name="Previous" />}
                     </div>
                     <div onClick={() => setActiveStep(activeStep + 1)}>
-                        {activeStep < steps.length-1 &&<NextPrevBtn name="Next" />}
+                        {activeStep < steps.length - 1 && <NextPrevBtn name="Next" />}
                     </div>
                 </div>
             </div>
