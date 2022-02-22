@@ -37,6 +37,7 @@ const blue = {
 const CustomButtonRoot = styled(ButtonRoot)(
   ({ theme }: { theme: Theme }) => `
   overflow: visible;
+  stroke-linecap="round"
   cursor: pointer;
   --main-color: ${theme.palette.mode === 'light' ? blue[600] : blue[100]};
   --hover-color: ${theme.palette.mode === 'light' ? blue[50] : blue[900]};

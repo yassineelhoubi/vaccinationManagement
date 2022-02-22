@@ -3,7 +3,19 @@ export interface headerProps {
     takeShot: boolean;
 }
 export interface AgeProps {
-    setValue: (val: string | null) => void;
+    setAge: (val: string | null) => void;
+}
+export interface ShotProps {
+    setShot: (val: number) => void;
+    shot: number
+}
+export interface DiseaseOrTreatmentsProps {
+    setDiseaseOrTreatments: (val: boolean) => void;
+    diseaseOrTreatments: boolean;
+}
+export interface SideEffectsProps {
+    setSideEffects: (val: boolean) => void;
+    sideEffects: boolean;
 }
 export interface NextPrevBtnProps {
     name: string

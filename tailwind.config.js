@@ -10,7 +10,11 @@ module.exports = {
       'display': ['Oswald'],
       'body': ['"Open Sans"'],
     },
-    extend: {},
+    extend: {
+      height: {
+        100: '30rem',
+      },
+    },
   },
   plugins: [],
 }
