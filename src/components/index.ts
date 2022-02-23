@@ -8,3 +8,5 @@ export { DiseaseOrTreatments } from './DiseaseOrTreatments';
 export { SideEffects } from './SideEffects';
 export { UserFormCIN } from './UserFormCIN';
 export { UserInfoValidation } from './UserInfoValidation';
+export { Btn } from './Btn';
+export { CustomizedSnackbar } from './CustomizedSnackbar';

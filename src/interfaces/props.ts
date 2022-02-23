@@ -52,3 +52,9 @@ export interface UserData {
     sideEffects1stVaccine?: string | boolean;
     sideEffects2stVaccine?: string | boolean;
 }
+export interface SnackBarProps {
+    text: string,
+    color : string,
+    state : boolean,
+    setState : Function
+}
