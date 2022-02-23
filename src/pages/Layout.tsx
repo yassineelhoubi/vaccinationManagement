@@ -1,11 +1,11 @@
 import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation } from "../components"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import axios from 'axios';
-
+import { UserInfo, UserInfoProps } from "../interfaces";
 
 const Layout = () => {
     const steps = ['Age', 'Vaccine', "CIN", "Validation"];
@@ -15,10 +15,21 @@ const Layout = () => {
     const [diseaseOrTreatments, setDiseaseOrTreatments] = useState<boolean>(false)
     const [sideEffects, setSideEffects] = useState<boolean>(false)
     const [cin, setCin] = useState<string | null>(null)
+    const [userInfo, setUserInfo] = useState<UserInfo>({
+        email: "",
+        address: "",
+        fName: "",
+        lName: "",
+        city: "",
+        nbrPhone: 0,
+    })
+
+
+
+
     const handleNextStep = () => {
 
         switch (activeStep) {
-
             case 1:
                 if (age >= 12) {
 
@@ -39,23 +50,37 @@ const Layout = () => {
             case 3:
                 if (cin != null) {
                     axios.get(`http://localhost:8000/api/user/check/${cin}/${shot}`)
-                    .then((res) => {
-                        if(res.data.next){
-                            setActiveStep(activeStep + 1)
-                            console.log("res")
-                        }else{
+                        .then((res) => {
+                            if (res.data.next) {
+                                setActiveStep(activeStep + 1)
+                                console.log("res")
+                            } else {
 
-                            console.log("axios nn")
-                        }
-                    }).catch((e) => {
-                        console.log(e.message)
-                    })
+                                console.log("axios nn")
+                            }
+                        }).catch((e) => {
+                            console.log(e.message)
+                        })
                 } else {
                     console.log("nn")
 
                 }
 
         }
+    }
+    const handleSubmit = () => {
+
+        const data = {
+            ...userInfo,
+            age: age,
+            shot: shot,
+            cin: cin,
+            sideEffects: sideEffects,
+            diseaseOrTreatments: diseaseOrTreatments,
+        }
+        console.log(data)
+
+
     }
     return (
         <div className=" flex justify-center items-center">
@@ -75,7 +100,7 @@ const Layout = () => {
                     {activeStep == 2 && shot == 1 ? <DiseaseOrTreatments setDiseaseOrTreatments={setDiseaseOrTreatments} diseaseOrTreatments={diseaseOrTreatments} /> : null}
                     {activeStep == 2 && (shot == 2 || shot == 3) ? <SideEffects setSideEffects={setSideEffects} sideEffects={sideEffects} /> : null}
                     {activeStep == 3 && <UserFormCIN cin={cin} setCin={setCin} />}
-                    {activeStep == 4 && <UserInfoValidation />}
+                    {activeStep == 4 && <UserInfoValidation setUserInfo={setUserInfo} userInfo={userInfo} />}
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">
                     <div onClick={() => setActiveStep(activeStep - 1)}>
@@ -84,7 +109,7 @@ const Layout = () => {
                     <div onClick={() => handleNextStep()}>
                         {activeStep < steps.length && <NextPrevBtn name="Next" />}
                     </div>
-                    <div onClick={() => console.log("test")}>
+                    <div onClick={() => handleSubmit()}>
                         {activeStep === 4 && <NextPrevBtn name="Submit" />}
                     </div>
                 </div>

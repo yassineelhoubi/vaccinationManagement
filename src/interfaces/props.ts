@@ -2,6 +2,9 @@ export interface headerProps {
     setTakeShot: (val: boolean) => void;
     takeShot: boolean;
 }
+export interface NextPrevBtnProps {
+    name: string
+}
 export interface AgeProps {
     setAge: (val: number) => void;
 }
@@ -17,10 +20,20 @@ export interface SideEffectsProps {
     setSideEffects: (val: boolean) => void;
     sideEffects: boolean;
 }
-export interface cinProps {
+export interface CinProps {
     setCin: (val: string | null) => void;
     cin: string | null;
 }
-export interface NextPrevBtnProps {
-    name: string
+export interface UserInfoProps {
+    setUserInfo: (val: UserInfo) => void;
+    userInfo: UserInfo;
+}
+
+export interface UserInfo {
+    address: string;
+    email: string;
+    fName: string;
+    lName: string;
+    city: string;
+    nbrPhone: number;
 }
