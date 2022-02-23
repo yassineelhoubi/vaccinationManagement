@@ -37,3 +37,18 @@ export interface UserInfo {
     city: string;
     nbrPhone: number;
 }
+
+export interface UserData {
+    age: number;
+    shot: number
+    address: string;
+    email: string;
+    fName: string;
+    lName: string;
+    city: string;
+    nbrPhone: number;
+    cin: string | null;
+    diseaseOrTreatments?: string | boolean;
+    sideEffects1stVaccine?: string | boolean;
+    sideEffects2stVaccine?: string | boolean;
+}

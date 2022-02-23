@@ -6,5 +6,6 @@ export type {
     SideEffectsProps,
     CinProps,
     UserInfoProps,
-    UserInfo
+    UserInfo,
+    UserData
 } from "./props"
