@@ -13,11 +13,35 @@ const Layout = () => {
     const [shot, setShot] = useState<number>(0)
     const [diseaseOrTreatments, setDiseaseOrTreatments] = useState<boolean>(false)
     const [sideEffects, setSideEffects] = useState<boolean>(false)
-
+    const [cin, setCin] = useState<string | null>(null)
     const handleNextStep = () => {
-        if (activeStep == 1 && age >= 12) {
-            setActiveStep(activeStep + 1)
-        } else {
+
+        switch (activeStep) {
+
+            case 1:
+                if (age >= 12) {
+
+                    setActiveStep(activeStep + 1)
+                } else {
+                    console.log("nn");
+
+                }
+                break;
+            case 2:
+                if (shot != 0) {
+                    setActiveStep(activeStep + 1)
+                } else {
+                    console.log("nn")
+
+                }
+                break;
+            case 3:
+                if (cin != null) {
+                    setActiveStep(activeStep + 1)
+                } else {
+                    console.log("nn")
+
+                }
 
         }
     }
