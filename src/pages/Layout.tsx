@@ -62,7 +62,7 @@ const Layout = () => {
                     {activeStep == 2 && <ChoiceShot setShot={setShot} shot={shot} />}
                     {activeStep == 2 && shot == 1 ? <DiseaseOrTreatments setDiseaseOrTreatments={setDiseaseOrTreatments} diseaseOrTreatments={diseaseOrTreatments} /> : null}
                     {activeStep == 2 && (shot == 2 || shot == 3) ? <SideEffects setSideEffects={setSideEffects} sideEffects={sideEffects} /> : null}
-                    {activeStep == 3 && <UserFormCIN />}
+                    {activeStep == 3 && <UserFormCIN cin={cin} setCin={setCin} />}
                     {activeStep == 4 && <UserInfoValidation />}
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">
