@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
+import axios from 'axios';
 
 
 const Layout = () => {
@@ -37,7 +38,18 @@ const Layout = () => {
                 break;
             case 3:
                 if (cin != null) {
-                    setActiveStep(activeStep + 1)
+                    axios.get(`http://localhost:8000/api/user/check/${cin}/${shot}`)
+                    .then((res) => {
+                        if(res.data.next){
+                            setActiveStep(activeStep + 1)
+                            console.log("res")
+                        }else{
+
+                            console.log("axios nn")
+                        }
+                    }).catch((e) => {
+                        console.log(e.message)
+                    })
                 } else {
                     console.log("nn")
 
