@@ -2,10 +2,10 @@
 import FormControl from '@mui/material/FormControl';
 import Box from '@mui/material/Box';
 import { FormLabel, TextField } from '@mui/material';
-import { cinProps } from '../interfaces';
+import { CinProps } from '../interfaces';
 
 
-const UserFormCIN: React.FC<cinProps> = ({ cin, setCin }) => {
+const UserFormCIN: React.FC<CinProps> = ({ cin, setCin }) => {
     return (
         <Box >
             <FormControl sx={{ width: '25ch' }}>
