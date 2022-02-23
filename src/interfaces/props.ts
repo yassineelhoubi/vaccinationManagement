@@ -20,3 +20,9 @@ export interface SideEffectsProps {
 export interface NextPrevBtnProps {
     name: string
 }
+export interface SnackBarProps {
+    text: string,
+    color : string,
+    state : boolean,
+    setState : Function
+}
