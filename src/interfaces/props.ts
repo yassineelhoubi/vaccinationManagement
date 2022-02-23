@@ -3,7 +3,7 @@ export interface headerProps {
     takeShot: boolean;
 }
 export interface AgeProps {
-    setAge: (val: string | null) => void;
+    setAge: (val: number) => void;
 }
 export interface ShotProps {
     setShot: (val: number) => void;

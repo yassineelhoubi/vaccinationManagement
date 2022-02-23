@@ -8,7 +8,7 @@ import StepLabel from '@mui/material/StepLabel';
 
 const Layout = () => {
     const steps = ['Age', 'Vaccine', "CIN", "Validation"];
-    const [age, setAge] = useState<string | null>(null);
+    const [age, setAge] = useState<number>(0);
     const [activeStep, setActiveStep] = useState<number>(1)
     const [shot, setShot] = useState<number>(0)
     const [diseaseOrTreatments, setDiseaseOrTreatments] = useState<boolean>(false)
