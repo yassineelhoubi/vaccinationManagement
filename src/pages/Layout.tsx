@@ -1,5 +1,5 @@
 import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation } from "../components"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -13,6 +13,14 @@ const Layout = () => {
     const [shot, setShot] = useState<number>(0)
     const [diseaseOrTreatments, setDiseaseOrTreatments] = useState<boolean>(false)
     const [sideEffects, setSideEffects] = useState<boolean>(false)
+
+    const handleNextStep = () => {
+        if (activeStep == 1 && age >= 12) {
+            setActiveStep(activeStep + 1)
+        } else {
+
+        }
+    }
     return (
         <div className=" flex justify-center items-center">
             <div className="  drop-shadow-2xl h-100 md:w-2/3 lg:w-1/2 w-full bg-sky-100  flex flex-col justify-center items-center rounded">
@@ -37,7 +45,7 @@ const Layout = () => {
                     <div onClick={() => setActiveStep(activeStep - 1)}>
                         {activeStep > 1 && < NextPrevBtn name="Previous" />}
                     </div>
-                    <div onClick={() => setActiveStep(activeStep + 1)}>
+                    <div onClick={() => handleNextStep()}>
                         {activeStep < steps.length && <NextPrevBtn name="Next" />}
                     </div>
                 </div>

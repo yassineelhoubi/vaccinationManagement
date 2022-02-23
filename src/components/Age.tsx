@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 import { FormControl, FormLabel, Stack } from "@mui/material";
 import { AgeProps } from "../interfaces"
 
-const Age: React.FC<AgeProps> = ({ setAge}) => {
+const Age: React.FC<AgeProps> = ({ setAge }) => {
 
     const handleChangeDate = (date: string) => {
         var today = new Date();
@@ -14,6 +14,7 @@ const Age: React.FC<AgeProps> = ({ setAge}) => {
             age--;
         }
         setAge(age)
+
     }
 
     return (
