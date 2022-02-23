@@ -72,6 +72,9 @@ const Layout = () => {
                     <div onClick={() => handleNextStep()}>
                         {activeStep < steps.length && <NextPrevBtn name="Next" />}
                     </div>
+                    <div onClick={() => console.log("test")}>
+                        {activeStep === 4 && <NextPrevBtn name="Submit" />}
+                    </div>
                 </div>
             </div>
         </div>
