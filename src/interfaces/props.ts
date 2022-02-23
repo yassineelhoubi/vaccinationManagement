@@ -17,6 +17,10 @@ export interface SideEffectsProps {
     setSideEffects: (val: boolean) => void;
     sideEffects: boolean;
 }
+export interface cinProps {
+    setCin: (val: string | null) => void;
+    cin: string | null;
+}
 export interface NextPrevBtnProps {
     name: string
 }

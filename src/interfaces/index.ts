@@ -1,1 +1,1 @@
-export type { headerProps, AgeProps, ShotProps, DiseaseOrTreatmentsProps, SideEffectsProps , SnackBarProps} from "./props"
+export type { headerProps, AgeProps, ShotProps, DiseaseOrTreatmentsProps, SideEffectsProps , cinProps , SnackBarProps} from "./props"
