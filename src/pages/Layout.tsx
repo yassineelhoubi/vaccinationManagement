@@ -32,13 +32,6 @@ const Layout = () => {
     const [color , setColor] = useState<custom>("success");
     const [state , setState] = useState(false);
 
-
-    const handleClick = () => {
-        console.log("clicked on button")
-        console.log(text+" "+ color);
-      }
-
-
     const handleNextStep = () => {
 
         switch (activeStep) {
@@ -73,7 +66,6 @@ const Layout = () => {
                                 setText("something wrong, check your shot again please !")
                                 setColor("error");
                                 setState(true);
-                                console.log("axios nn")
                             }
                         }).catch((e) => {
                             setText("something wrong , get back later !")
@@ -108,8 +100,6 @@ const Layout = () => {
         axios.post("http://localhost:8000/api/user/registerUser", data)
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
-
-
     }
     return (<>
             <div className=" flex justify-center items-center">
