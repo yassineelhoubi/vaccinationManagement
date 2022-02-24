@@ -71,16 +71,21 @@ const Layout = () => {
                                 setActiveStep(activeStep + 1)
                                 console.log("res")
                             } else {
-
+                                setText("something wrong, check your shot again please !")
+                                setColor("error");
+                                setState(true);
                                 console.log("axios nn")
                             }
                         }).catch((e) => {
+                            setText("something wrong , get back later !")
+                            setColor("error");
+                            setState(true);
                             console.log(e.message)
                         })
                 } else {
                     console.log("nn")
                     setText("something wrong , please insert a valid CIN !")
-                    setColor("info");
+                    setColor("error");
                     setState(true);
                 }
 
