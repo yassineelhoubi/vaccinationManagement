@@ -4,11 +4,7 @@ import { UserInfoProps, UserInfo } from '../interfaces';
 import { useEffect } from 'react';
 
 const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) => {
-    useEffect(() => {
-        console.log(userInfo);
-
-    }, [userInfo])
-
+    
     const newData = { ...userInfo }
     const handleChange = (e: any) => {
         //@ts-ignore
