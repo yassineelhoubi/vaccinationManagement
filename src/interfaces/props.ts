@@ -38,6 +38,20 @@ export interface UserInfo {
     nbrPhone: number;
 }
 
+export interface UserData {
+    age: number;
+    shotTaken: number
+    address: string;
+    email: string;
+    fName: string;
+    lName: string;
+    city: string;
+    nbrPhone: number;
+    cin: string | null;
+    diseaseOrTreatments?: string | boolean;
+    sideEffects1stVaccine?: string | boolean;
+    sideEffects2stVaccine?: string | boolean;
+}
 export interface SnackBarProps {
     text: string,
     color : string,

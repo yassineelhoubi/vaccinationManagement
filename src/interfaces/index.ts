@@ -7,5 +7,6 @@ export type {
     CinProps,
     UserInfoProps,
     UserInfo,
+    UserData,
     SnackBarProps
 } from "./props"

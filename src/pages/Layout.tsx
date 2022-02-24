@@ -5,7 +5,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import axios from 'axios';
-import { UserInfo, UserInfoProps } from "../interfaces";
+import { UserData, UserInfo, UserInfoProps } from "../interfaces";
 import { AlertColor } from "@mui/material";
 
 type custom = AlertColor | 'danger'
@@ -87,15 +87,22 @@ const Layout = () => {
     }
     const handleSubmit = () => {
 
-        const data = {
+        const data: UserData = {
             ...userInfo,
             age: age,
-            shot: shot,
+            shotTaken: shot,
             cin: cin,
-            sideEffects: sideEffects,
             diseaseOrTreatments: diseaseOrTreatments,
         }
-        console.log(data)
+        if (shot === 2 && sideEffects !== false) {
+            data.sideEffects1stVaccine = sideEffects
+        } else if (shot === 3 && sideEffects !== false) {
+            data.sideEffects2stVaccine = sideEffects
+
+        }
+        axios.post("http://localhost:8000/api/user/registerUser", data)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
 
 
     }
