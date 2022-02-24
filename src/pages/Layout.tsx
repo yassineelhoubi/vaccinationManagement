@@ -63,7 +63,7 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
             case 3:
                 setSpinnerState(true)
                 if (cin != null) {
-                    axios.get(`http://localhost:8000/api/user/check/${cin}/${shot}`)
+                    axios.get(`${process.env.REACT_APP_BASE_URL}api/user/check/${cin}/${shot}`)
                         .then((res) => {
                             setSpinnerState(false)
                             if (res.data.next) {
@@ -104,7 +104,7 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
             data.sideEffects2stVaccine = sideEffects
 
         }
-        axios.post("http://localhost:8000/api/user/registerUser", data)
+        axios.post(`${process.env.REACT_APP_BASE_URL}api/user/registerUser`, data)
             .then((res) => {
                 setText("Your appointments has been programing, check your email")
                 setColor("success");
