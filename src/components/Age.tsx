@@ -5,6 +5,18 @@ import { AgeProps } from "../interfaces"
 
 const Age: React.FC<AgeProps> = ({ setAge }) => {
 
+    const handleChangeDate = (date: string) => {
+        var today = new Date();
+        var birthDate = new Date(date);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        setAge(age)
+
+    }
+
     return (
         <>
             <FormControl>
@@ -16,7 +28,7 @@ const Age: React.FC<AgeProps> = ({ setAge }) => {
                         label="Date"
                         type="date"
                         defaultValue="2010-01-01"
-                        onChange={(e) => setAge(e.target.value)}
+                        onChange={(e) => handleChangeDate(e.target.value)}
                         sx={{ width: 220 }}
                         InputLabelProps={{
                             shrink: true,
