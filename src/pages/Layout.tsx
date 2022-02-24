@@ -32,13 +32,6 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
     const [color, setColor] = useState<custom>("success");
     const [state, setState] = useState(false);
 
-
-    const handleClick = () => {
-        console.log("clicked on button")
-        console.log(text + " " + color);
-    }
-
-
     const handleNextStep = () => {
 
         switch (activeStep) {
