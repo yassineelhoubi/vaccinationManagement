@@ -1,4 +1,4 @@
-import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation, CustomizedSnackbar } from "../components"
+import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation, CustomizedSnackbar, CircularIndeterminate } from "../components"
 import { useState } from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -11,6 +11,7 @@ import { AlertColor } from "@mui/material";
 type custom = AlertColor | 'danger'
 
 const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
+    const [spinnerState, setSpinnerState] = useState(false);
     const steps = ['Age', 'Vaccine', "CIN", "Validation"];
     const [age, setAge] = useState<number>(0);
     const [activeStep, setActiveStep] = useState<number>(1)
@@ -36,29 +37,35 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
 
         switch (activeStep) {
             case 1:
+                setSpinnerState(true)
                 if (age >= 12) {
                     setActiveStep(activeStep + 1)
+                    setSpinnerState(false)
                 } else {
-                    console.log("nn");
+                    setSpinnerState(false)
                     setText("you're not eligible to do this operation !")
                     setColor("warning");
                     setState(true);
                 }
                 break;
             case 2:
+                setSpinnerState(true)
                 if (shot != 0) {
+                    setSpinnerState(false)
                     setActiveStep(activeStep + 1)
                 } else {
-                    console.log("nn")
+                    setSpinnerState(false)
                     setText("choose a shot please !")
                     setColor("warning");
                     setState(true);
                 }
                 break;
             case 3:
+                setSpinnerState(true)
                 if (cin != null) {
                     axios.get(`http://localhost:8000/api/user/check/${cin}/${shot}`)
                         .then((res) => {
+                            setSpinnerState(false)
                             if (res.data.next) {
                                 setUserInfo(res.data.message)
                                 setActiveStep(activeStep + 1)
@@ -68,12 +75,13 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
                                 setState(true);
                             }
                         }).catch((e) => {
+                            setSpinnerState(false)
                             setText("something wrong , get back later !")
                             setColor("error");
                             setState(true);
                         })
                 } else {
-                    console.log("nn")
+                    setSpinnerState(false)
                     setText("something is wrong , please insert a valid CIN !")
                     setColor("error");
                     setState(true);
@@ -82,7 +90,7 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
         }
     }
     const handleSubmit = () => {
-
+        setSpinnerState(true)
         const data: UserData = {
             ...userInfo,
             age: age,
@@ -102,11 +110,13 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
                 setColor("success");
                 setState(true);
                 setTimeout(() =>{setTakeShot(false)},4000)
+                setSpinnerState(false)
             })
             .catch((err) => {
                 setText("something is wrong, try it again please !")
                 setColor("error");
                 setState(true);
+                setSpinnerState(false)
             })
 
     }
@@ -131,15 +141,24 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
                     {activeStep == 4 && <UserInfoValidation setUserInfo={setUserInfo} userInfo={userInfo} />}
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">
-                    <div onClick={() => setActiveStep(activeStep - 1)}>
-                        {activeStep > 1 && < NextPrevBtn name="Previous" />}
+                    {
+                    !spinnerState ?
+                    <>
+                        <div onClick={() => setActiveStep(activeStep - 1)}>
+                            {activeStep > 1 && < NextPrevBtn name="Previous" />}
+                        </div>
+                        <div onClick={() => handleNextStep()}>
+                            {activeStep < steps.length && <NextPrevBtn name="Next" />}
+                        </div>
+                        <div onClick={() => handleSubmit()}>
+                            {activeStep === 4 && <NextPrevBtn name="Submit" />}
+                        </div>
+                    </>
+                    :
+                    <div className="flex justify-center items-center w-full">
+                        <CircularIndeterminate/>
                     </div>
-                    <div onClick={() => handleNextStep()}>
-                        {activeStep < steps.length && <NextPrevBtn name="Next" />}
-                    </div>
-                    <div onClick={() => handleSubmit()}>
-                        {activeStep === 4 && <NextPrevBtn name="Submit" />}
-                    </div>
+                    }
                 </div>
             </div>
         </div>
