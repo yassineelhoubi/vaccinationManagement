@@ -34,7 +34,7 @@ export const CustomizedSnackbar:React.FC<SnackBarProps> = ({text, color , state,
     <Stack spacing={2} sx={{ width: '100%' }}>
       <Snackbar open={state} autoHideDuration={3000} onClose={handleClose}>
         <Alert onClose={handleClose} severity={color as AlertColor} sx={{ width: '100%' }}>
-          This is a success message! { text }
+          { text }
         </Alert>
       </Snackbar>
     </Stack>
