@@ -46,7 +46,6 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
                 if (age >= 12) {
                     setActiveStep(activeStep + 1)
                 } else {
-                    console.log("nn");
                     setText("you're not eligible to do this operation !")
                     setColor("warning");
                     setState(true);
@@ -56,7 +55,6 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
                 if (shot != 0) {
                     setActiveStep(activeStep + 1)
                 } else {
-                    console.log("nn")
                     setText("choose a shot please !")
                     setColor("warning");
                     setState(true);
@@ -80,7 +78,6 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
                             setState(true);
                         })
                 } else {
-                    console.log("nn")
                     setText("something is wrong , please insert a valid CIN !")
                     setColor("error");
                     setState(true);
