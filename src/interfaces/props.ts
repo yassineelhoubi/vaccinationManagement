@@ -40,7 +40,7 @@ export interface UserInfo {
 
 export interface UserData {
     age: number;
-    shot: number
+    shotTaken: number
     address: string;
     email: string;
     fName: string;

@@ -73,7 +73,7 @@ const Layout = () => {
         const data: UserData = {
             ...userInfo,
             age: age,
-            shot: shot,
+            shotTaken: shot,
             cin: cin,
             diseaseOrTreatments: diseaseOrTreatments,
         }
