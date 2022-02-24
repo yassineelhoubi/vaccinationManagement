@@ -67,6 +67,7 @@ const Layout = () => {
                     axios.get(`http://localhost:8000/api/user/check/${cin}/${shot}`)
                         .then((res) => {
                             if (res.data.next) {
+                                setUserInfo(res.data.message)
                                 setActiveStep(activeStep + 1)
                                 console.log("res")
                             } else {

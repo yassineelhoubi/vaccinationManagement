@@ -27,16 +27,16 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
         }}>
             <FormLabel className="text-wider mb-3 lg:flex lg:justify-center hidden">Validate Your Information </FormLabel>
             <div className="flex w-full justify-center items-center lg:flex-row flex-col">
-                <TextField size="small" id="fName" margin="normal" label="First Name" variant="outlined" />
-                <TextField size="small" id="lName" margin="normal" label="Last Name" variant="outlined" />
+                <TextField size="small" value={userInfo.fName} id="fName" margin="normal" label="First Name" variant="outlined" />
+                <TextField size="small" value={userInfo.lName} id="lName" margin="normal" label="Last Name" variant="outlined" />
             </div>
             <div className="flex w-full justify-center items-center lg:flex-row flex-col">
-                <TextField size="small" type="number" id="nbrPhone" margin="normal" label="Phone" variant="outlined" />
-                <TextField size="small" id="email" margin="normal" label="Email" variant="outlined" />
+                <TextField size="small" value={userInfo.nbrPhone} type="number" id="nbrPhone" margin="normal" label="Phone" variant="outlined" />
+                <TextField size="small" value={userInfo.email} id="email" margin="normal" label="Email" variant="outlined" />
             </div>
             <div className="flex w-full justify-center items-center lg:flex-row flex-col">
-                <TextField size="small" id="city" margin="normal" label="City" variant="outlined" />
-                <TextField size="small" id="address" margin="normal" label="Address" variant="outlined" />
+                <TextField size="small" value={userInfo.city} id="city" margin="normal" label="City" variant="outlined" />
+                <TextField size="small" value={userInfo.address} id="address" margin="normal" label="Address" variant="outlined" />
             </div>
 
         </FormControl>
