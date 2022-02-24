@@ -17,7 +17,7 @@ function App() {
       <div className=" lg:pb-12">
         <div className="max-w-screen-2xl px-4 md:px-8 mx-auto">
           <Header setTakeShot={setTakeShot} takeShot={takeShot} />
-          {!takeShot ? <Home /> : <Layout />}
+          {!takeShot ? <Home /> : <Layout setTakeShot={setTakeShot} />}
 
         </div>
       </div>

@@ -54,7 +54,11 @@ export interface UserData {
 }
 export interface SnackBarProps {
     text: string,
-    color : string,
-    state : boolean,
-    setState : Function
+    color: string,
+    state: boolean,
+    setState: Function
+}
+
+export interface LayoutProps {
+    setTakeShot: (val: boolean) => void
 }
