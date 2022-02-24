@@ -83,7 +83,9 @@ const Layout = () => {
             data.sideEffects2stVaccine = sideEffects
 
         }
-        console.log(data)
+        axios.post("http://localhost:8000/api/user/registerUser", data)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err))
 
 
     }
