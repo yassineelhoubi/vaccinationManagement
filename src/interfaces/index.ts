@@ -8,5 +8,6 @@ export type {
     UserInfoProps,
     UserInfo,
     UserData,
-    SnackBarProps
+    SnackBarProps,
+    LayoutProps
 } from "./props"
