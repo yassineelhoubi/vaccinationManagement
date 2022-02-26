@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import logo from '../assets/images.png'
+import logo from '../assets/img/images.png'
 import {headerProps} from "../interfaces"
 const Header: React.FC<headerProps> = ({setTakeShot , takeShot}) => {
 

@@ -1,5 +1,5 @@
-import imgVaccine from '../assets/imgVaccine.jpeg'
-import imgStatistics from '../assets/statistics.svg'
+import imgVaccine from '../assets/img/imgVaccine.jpeg'
+import imgStatistics from '../assets/img/statistics.svg'
 const Welcome: React.FC = () => {
     return (
         <div className="flex flex-col lg:flex-row lg:h-max space-x-4 space-y-4 ">
