@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert, { AlertColor, AlertProps } from '@mui/material/Alert';
-import { SnackBarProps } from "../interfaces"
+import { SnackBarProps } from "../../interfaces"
 import { useEffect } from 'react';
 
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
