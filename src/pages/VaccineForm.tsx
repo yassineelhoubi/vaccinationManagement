@@ -5,12 +5,15 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import axios from 'axios';
-import { UserData, UserInfo, LayoutProps } from "../interfaces";
+import { UserData, UserInfo } from "../interfaces";
 import { AlertColor } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 type custom = AlertColor | 'danger'
 
-const VaccineForm:React.FC<LayoutProps> = ({setTakeShot}) => {
+const VaccineForm:React.FC = () => {
+    let navigate = useNavigate();
+
     const [spinnerState, setSpinnerState] = useState(false);
     const steps = ['Age', 'Vaccine', "CIN", "Validation"];
     const [age, setAge] = useState<number>(0);
@@ -109,7 +112,7 @@ const VaccineForm:React.FC<LayoutProps> = ({setTakeShot}) => {
                 setText("Your appointments has been programing, check your email")
                 setColor("success");
                 setState(true);
-                setTimeout(() =>{setTakeShot(false)},4000)
+                setTimeout(() =>{navigate(`/`);},4000)
                 setSpinnerState(false)
             })
             .catch((err) => {

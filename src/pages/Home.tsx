@@ -1,7 +1,7 @@
 import { VaccinationProcess, Welcome } from "../components"
 
 
-const Home = () => {
+const Home: React.FC = () => {
     return (
         <>
             <Welcome />

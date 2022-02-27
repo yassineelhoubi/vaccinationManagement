@@ -1,6 +1,18 @@
+import { useEffect, useState } from 'react'
 import logo from '../../assets/img/images.png'
-import {headerProps} from "../../interfaces"
-const Header: React.FC<headerProps> = ({setTakeShot , takeShot}) => {
+import { useNavigate } from "react-router-dom";
+
+const Header: React.FC = () => {
+
+  let navigate = useNavigate();
+
+  const [takeShot, setTakeShot] = useState(false)
+
+  useEffect(() => {
+    const url = takeShot ? "form" : ""
+    navigate(`/${url}`);
+
+  }, [takeShot])
 
 
   return (
@@ -11,8 +23,8 @@ const Header: React.FC<headerProps> = ({setTakeShot , takeShot}) => {
         Morocco Vaccination
       </a>
       {/* button */}
-      <a href="#" onClick={() => { setTakeShot(!takeShot) }} className="bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
-        {!takeShot?"Take your vaccine":"Back to Home"}</a>
+      <button onClick={() => { setTakeShot(!takeShot) }} className="bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3">
+        {!takeShot ? "Take your vaccine" : "Back to Home"}</button>
     </header>
   )
 }
