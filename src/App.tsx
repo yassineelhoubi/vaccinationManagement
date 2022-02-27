@@ -1,6 +1,6 @@
-import { useState } from 'react';
+
 import './App.css';
-import { Dashboard, Home, VaccineForm, UserLayouts } from './pages';
+import { Dashboard, Home, VaccineForm, UserLayouts, LoginForm } from './pages';
 import { Routes, Route } from "react-router-dom";
 function App() {
 
@@ -11,6 +11,9 @@ function App() {
         <Route path="" element={<Home />} />
         <Route path="form" element={<VaccineForm />} />
       </Route>
+
+      <Route path="auth" element={<LoginForm />} />
+
       <Route path="/dash" element={<Dashboard />}>
 
       </Route>
