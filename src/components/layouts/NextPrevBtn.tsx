@@ -4,7 +4,7 @@ import ButtonUnstyled, {
   buttonUnstyledClasses,
 } from '@mui/base/ButtonUnstyled';
 import { styled, Theme } from '@mui/system';
-import { NextPrevBtnProps } from '../interfaces/props';
+import { NextPrevBtnProps } from '../../interfaces/props';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(
   props: React.PropsWithChildren<{}>,

@@ -1,2 +1,5 @@
 export { Home } from './Home';
-export { Layout } from './Layout';
+export { VaccineForm } from './VaccineForm';
+export { Dashboard } from './Dashboard';
+export { UserLayouts } from './UserLayouts';
+export { LoginForm } from './LoginForm'

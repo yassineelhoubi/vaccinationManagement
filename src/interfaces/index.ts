@@ -1,5 +1,4 @@
 export type {
-    headerProps,
     AgeProps,
     ShotProps,
     DiseaseOrTreatmentsProps,
@@ -9,5 +8,4 @@ export type {
     UserInfo,
     UserData,
     SnackBarProps,
-    LayoutProps
 } from "./props"

@@ -1,12 +1,4 @@
-export { Header } from './Header';
 export { VaccinationProcess } from './VaccinationProcess';
 export { Welcome } from './Welcome';
-export { Age } from './Age';
-export { NextPrevBtn } from './NextPrevBtn';
-export { ChoiceShot } from './ChoiceShot';
-export { DiseaseOrTreatments } from './DiseaseOrTreatments';
-export { SideEffects } from './SideEffects';
-export { UserFormCIN } from './UserFormCIN';
-export { UserInfoValidation } from './UserInfoValidation';
-export { CustomizedSnackbar } from './CustomizedSnackbar';
-export { CircularIndeterminate } from './CircularIndeterminate';
+export { Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation } from './vaccineForm'
+export { Header, NextPrevBtn, CustomizedSnackbar, CircularIndeterminate } from './layouts';

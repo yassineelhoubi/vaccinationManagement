@@ -1,5 +1,5 @@
-import imgMap from '../assets/map.png'
-import imgProcess from '../assets/process.png'
+import imgMap from '../assets/img/map.png'
+import imgProcess from '../assets/img/process.png'
 
 
 const VaccinationProcess: React.FC = () => {

@@ -1,6 +1,6 @@
 import FormControl from '@mui/material/FormControl';
 import { FormLabel, TextField } from '@mui/material';
-import { UserInfoProps, UserInfo } from '../interfaces';
+import { UserInfoProps, UserInfo } from '../../interfaces';
 import { useEffect } from 'react';
 
 const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) => {
