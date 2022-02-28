@@ -66,6 +66,7 @@ const VaccineForm:React.FC = () => {
             case 3:
                 setSpinnerState(true)
                 if (cin != null) {
+                    // CHECKING CIN EXISTENCE AND ALSO THE VALIDITY OF SELECTED SHOT
                     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/check/${cin}/${shot}`)
                         .then((res) => {
                             setSpinnerState(false)
@@ -107,6 +108,7 @@ const VaccineForm:React.FC = () => {
             data.sideEffects2stVaccine = sideEffects
 
         }
+        // SENDING ALL USER INFOS TO DATABASE
         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/registerUser`, data)
             .then((res) => {
                 setText("Your appointments has been programing, check your email")
