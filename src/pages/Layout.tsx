@@ -132,7 +132,7 @@ const Layout:React.FC<LayoutProps> = ({setTakeShot}) => {
                         ))}
                     </Stepper>
                 </Box>
-                <div className="h-4/5 w-4/5 flex flex-col w-full h-full items-center  justify-center">
+                <div className="flex flex-col w-full h-full items-center  justify-center">
                     {activeStep == 1 && <Age setAge={setAge} />}
                     {activeStep == 2 && <ChoiceShot setShot={setShot} shot={shot} />}
                     {activeStep == 2 && shot == 1 ? <DiseaseOrTreatments setDiseaseOrTreatments={setDiseaseOrTreatments} diseaseOrTreatments={diseaseOrTreatments} /> : null}
