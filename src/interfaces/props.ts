@@ -1,7 +1,3 @@
-export interface headerProps {
-    setTakeShot: (val: boolean) => void;
-    takeShot: boolean;
-}
 export interface NextPrevBtnProps {
     name: string
 }
@@ -57,8 +53,4 @@ export interface SnackBarProps {
     color: string,
     state: boolean,
     setState: Function
-}
-
-export interface LayoutProps {
-    setTakeShot: (val: boolean) => void
 }
