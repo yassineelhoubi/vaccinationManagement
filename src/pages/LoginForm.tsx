@@ -11,10 +11,10 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from "formik"
-// import { useDispatch, useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import * as Yup from "yup"
 // import { login } from '../../Redux/services/login';
-// import { userData } from '../../Redux/features/auth/userSlice';
+import { managerData } from '../app/features/managerSlice';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 
@@ -26,7 +26,7 @@ const LoginForm: React.FC = () => {
     let navigate = useNavigate();
 
 
-    // let dispatch = useDispatch()
+    let dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -41,7 +41,10 @@ const LoginForm: React.FC = () => {
         onSubmit: async (values: any) => {
 
             console.log(values)
+            dispatch(managerData({
+                value: values
 
+            }))
             // await login(values).then((res) => {
             //     const role = res?.data?.doc?.role
             //     if (!role) {
