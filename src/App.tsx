@@ -6,15 +6,12 @@ import { RootState } from "./app/store";
 import { useSelector } from "react-redux"
 
 function PrivateOutlet() {
-  const isLooged = useSelector(
+
+  const isLogged = useSelector(
     (state: RootState) => state.manager.isLogged
   );
 
-  // setTimeout(() =>{auth = false;},3000)
-  console.log(isLooged);
-
-  // auth = true;
-  return isLooged ? <Outlet /> : <Navigate to="/auth" />;
+  return isLogged ? <Outlet /> : <Navigate to="/auth" />;
 }
 function App() {
 
@@ -22,17 +19,18 @@ function App() {
   return (
 
     <Routes>
-
+      {/* user Routes */}
       <Route path="/" element={<UserLayouts />} >
         <Route path="" element={<Home />} />
         <Route path="form" element={<VaccineForm />} />
       </Route>
 
+      {/* login */}
       <Route path="auth" element={<LoginForm />} />
 
+      {/* Manager Routes */}
       <Route path="/dash" element={<PrivateOutlet />} >
         <Route index element={<Dashboard />} />
-
       </Route>
 
     </Routes >
