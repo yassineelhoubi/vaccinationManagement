@@ -11,17 +11,26 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from "formik"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import * as Yup from "yup"
 import { login } from '../services';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { managerData } from '../app/features/managerSlice';
+import { CustomizedSnackbar } from "../components"
+import { AlertColor } from "@mui/material";
+import { useState } from 'react';
 
+type custom = AlertColor | 'danger'
 
 
 const theme = createTheme();
 
 const LoginForm: React.FC = () => {
+
+    // FOR CUSTOM SNACKAR
+    const [text, setText] = useState("there's no text right now !!!!");
+    const [color, setColor] = useState<custom>("success");
+    const [state, setState] = useState(false);
 
     let navigate = useNavigate();
 
@@ -56,7 +65,9 @@ const LoginForm: React.FC = () => {
                 }))
             }
             ).catch((err) => {
-                console.log(err)
+                setText("Your data is invalid")
+                setColor("warning");
+                setState(true);
             })
 
         }
@@ -65,73 +76,76 @@ const LoginForm: React.FC = () => {
     )
 
     return (
-        <ThemeProvider theme={theme}>
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <Box
-                    sx={{
-                        marginTop: 8,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                    }}
-                >
-                    <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                        {/* <LockOutlinedIcon /> */}
-                    </Avatar>
-                    <Typography component="h1" variant="h5">
-                        Sign in
-                    </Typography>
-                    <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
+        <>
+            <ThemeProvider theme={theme}>
+                <Container component="main" maxWidth="xs">
+                    <CssBaseline />
+                    <Box
+                        sx={{
+                            marginTop: 8,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+                            {/* <LockOutlinedIcon /> */}
+                        </Avatar>
+                        <Typography component="h1" variant="h5">
+                            Sign in
+                        </Typography>
+                        <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
 
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
-                            id="email"
-                            label="Email Address"
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
+                                id="email"
+                                label="Email Address"
 
-                            autoComplete="email"
-                            {...formik.getFieldProps('email')}
-                            autoFocus
-                        />
-                        {formik.touched.email && formik.errors.email ? <div className="text-red-400 ">{formik.errors.email}</div> : null}
-                        <TextField
-                            margin="normal"
-                            required
-                            fullWidth
+                                autoComplete="email"
+                                {...formik.getFieldProps('email')}
+                                autoFocus
+                            />
+                            {formik.touched.email && formik.errors.email ? <div className="text-red-400 ">{formik.errors.email}</div> : null}
+                            <TextField
+                                margin="normal"
+                                required
+                                fullWidth
 
-                            label="Password"
-                            type="password"
-                            id="password"
-                            {...formik.getFieldProps('password')}
-                            autoComplete="current-password"
-                        />
-                        {formik.touched.password && formik.errors.password ? <div className="text-red-400 ">{formik.errors.password}</div> : null}
-                        <FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign In
-                        </Button>
-                        <Grid container>
-                            <Grid item xs>
-                                <Link href="#" variant="body2">
-                                    Forgot password?
-                                </Link>
+                                label="Password"
+                                type="password"
+                                id="password"
+                                {...formik.getFieldProps('password')}
+                                autoComplete="current-password"
+                            />
+                            {formik.touched.password && formik.errors.password ? <div className="text-red-400 ">{formik.errors.password}</div> : null}
+                            <FormControlLabel
+                                control={<Checkbox value="remember" color="primary" />}
+                                label="Remember me"
+                            />
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Sign In
+                            </Button>
+                            <Grid container>
+                                <Grid item xs>
+                                    <Link href="#" variant="body2">
+                                        Forgot password?
+                                    </Link>
+                                </Grid>
+
                             </Grid>
-
-                        </Grid>
+                        </Box>
                     </Box>
-                </Box>
-            </Container>
-        </ThemeProvider>
+                </Container>
+            </ThemeProvider>
+            <CustomizedSnackbar text={text} color={color} state={state} setState={setState}></CustomizedSnackbar>
+        </>
     );
 }
 export { LoginForm }
