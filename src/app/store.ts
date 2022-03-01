@@ -1,18 +1,19 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
 import managerReducer from "./features/managerSlice"
-// import { persistReducer } from 'redux-persist'
-// import storage from 'redux-persist/lib/storage'
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
 
-// const persistConfig = {
-//     key: 'root',
-//     version: 1,
-//     storage,
-// }
+const persistConfig = {
+    key: 'root',
+    version: 1,
+    storage,
+}
 
-// const persistedReducer = persistReducer(persistConfig, managerReducer)
+const persistedReducer = persistReducer(persistConfig, managerReducer)
+
 export const store = configureStore({
     reducer: {
-        manager: managerReducer
+        manager: persistedReducer
     },
     middleware: getDefaultMiddleware({
         serializableCheck: false,
