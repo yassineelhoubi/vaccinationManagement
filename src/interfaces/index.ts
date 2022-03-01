@@ -9,3 +9,5 @@ export type {
     UserData,
     SnackBarProps,
 } from "./props"
+
+export type { ManagerState, Manager } from "./store"

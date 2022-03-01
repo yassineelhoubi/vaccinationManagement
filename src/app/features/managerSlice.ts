@@ -1,16 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ManagerState } from "../../interfaces";
 
-interface Manager {
-    token?: string;
-    email?: string;
-    lName?: string;
-    fName?: string;
-    area?: string;
-}
 
-interface ManagerState {
-    value: Manager
-}
 const initialState: ManagerState = {
     value: {}
 };
