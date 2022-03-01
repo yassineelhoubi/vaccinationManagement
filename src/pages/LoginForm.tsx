@@ -16,7 +16,7 @@ import * as Yup from "yup"
 import { login } from '../services';
 import { useNavigate } from 'react-router-dom';
 import { managerData } from '../app/features/managerSlice';
-import { CustomizedSnackbar } from "../components"
+import { CustomizedSnackbar, CircularIndeterminate } from "../components"
 import { AlertColor } from "@mui/material";
 import { useState } from 'react';
 
@@ -31,6 +31,9 @@ const LoginForm: React.FC = () => {
     const [text, setText] = useState("there's no text right now !!!!");
     const [color, setColor] = useState<custom>("success");
     const [state, setState] = useState(false);
+    //Spinner
+    const [spinnerState, setSpinnerState] = useState(false);
+
 
     let navigate = useNavigate();
 
@@ -48,10 +51,9 @@ const LoginForm: React.FC = () => {
         }),
         enableReinitialize: true,
         onSubmit: async (values: any) => {
-
+            setSpinnerState(true)
             await login(values).then((res) => {
-                console.log(res);
-
+                setSpinnerState(false)
                 const isLogged = res?.data.isLogged
                 if (isLogged) {
                     navigate("../dash", { replace: true });
@@ -65,6 +67,7 @@ const LoginForm: React.FC = () => {
                 }))
             }
             ).catch((err) => {
+                setSpinnerState(false)
                 setText("Your data is invalid")
                 setColor("warning");
                 setState(true);
@@ -132,6 +135,8 @@ const LoginForm: React.FC = () => {
                             >
                                 Sign In
                             </Button>
+                            {/* spinner */}
+                            {spinnerState && <CircularIndeterminate />}
                             <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
