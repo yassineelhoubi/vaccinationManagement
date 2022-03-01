@@ -10,4 +10,4 @@ export type {
     SnackBarProps,
 } from "./props"
 
-export type { ManagerState, Manager } from "./store"
+export type { Manager } from "./app"

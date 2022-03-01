@@ -4,8 +4,5 @@ export interface Manager {
     lName?: string;
     fName?: string;
     area?: string;
-}
-
-export interface ManagerState {
-    value: Manager
+    password?: string;
 }

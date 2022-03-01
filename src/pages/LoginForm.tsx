@@ -42,8 +42,7 @@ const LoginForm: React.FC = () => {
 
             console.log(values)
             dispatch(managerData({
-                value: values
-
+                email: values.email
             }))
             // await login(values).then((res) => {
             //     const role = res?.data?.doc?.role
