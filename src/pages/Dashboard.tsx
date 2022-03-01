@@ -13,6 +13,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { ItemList } from '../components/dashboard'
 // import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
+import { useDispatch } from "react-redux"
+import { clearData } from '../app/features/managerSlice';
 
 const drawerWidth = 240;
 
@@ -86,6 +88,9 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 const Dashboard: React.FC = () => {
+
+    let dispatch = useDispatch()
+
     const theme = useTheme();
     const [open, setOpen] = useState(false);
 
@@ -135,7 +140,7 @@ const Dashboard: React.FC = () => {
                 <DrawerHeader />
                 {/* WorkSpace */}
                 <h1>yassine</h1>
-
+                <button onClick={() => dispatch(clearData())}>logout</button>
                 {/* <Outlet /> */}
 
                 {/*  */}

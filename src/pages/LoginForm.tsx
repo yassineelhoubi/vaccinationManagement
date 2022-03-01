@@ -55,17 +55,19 @@ const LoginForm: React.FC = () => {
             await login(values).then((res) => {
                 setSpinnerState(false)
                 const isLogged = res?.data.isLogged
-                if (isLogged) {
-                    navigate("../dash", { replace: true });
-                }
+
                 dispatch(managerData({
-                    isLogged:res.data.isLogged,
+                    isLogged: res.data.isLogged,
                     token: res.data.token,
                     fName: res.data.doc.fName,
                     lName: res.data.doc.lName,
                     area: res.data.doc.area,
                     email: res.data.doc.email,
                 }))
+                
+                if (isLogged) {
+                    navigate("../dash", { replace: true });
+                }
             }
             ).catch((err) => {
                 setSpinnerState(false)
