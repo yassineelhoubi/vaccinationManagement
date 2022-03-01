@@ -13,9 +13,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useFormik } from "formik"
 import { useDispatch, useSelector } from "react-redux"
 import * as Yup from "yup"
-// import { login } from '../../Redux/services/login';
-import { managerData } from '../app/features/managerSlice';
+import { login } from '../services';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { managerData } from '../app/features/managerSlice';
 
 
 
@@ -40,36 +40,24 @@ const LoginForm: React.FC = () => {
         enableReinitialize: true,
         onSubmit: async (values: any) => {
 
-            console.log(values)
-            dispatch(managerData({
-                email: values.email
-            }))
-            // await login(values).then((res) => {
-            //     const role = res?.data?.doc?.role
-            //     if (!role) {
-            //         // isAdmin
-            //         navigate("../dashboard/admin/manageManagers/read", { replace: true });
+            await login(values).then((res) => {
+                console.log(res);
 
-            //     } else if (role == "MANAGER") {
-            //         console.log("MANAGER")
-
-            //     } else if (role == "DELIVERY_MANAGER") {
-            //         console.log("DELIVERY_MANAGER")
-
-            //     } else if (role == "DRIVER") {
-            //         console.log("DRIVER")
-
-            //     }
-            //     dispatch(userData({
-            //         token: res.data.token,
-            //         role: role ? role : "ADMIN",
-
-            //     }))
-            // }
-            // ).catch((err) => {
-            //     console.log(err)
-            // })
-
+                const isLogged = res?.data.isLogged
+                if (isLogged) {
+                    navigate("../dash", { replace: true });
+                }
+                dispatch(managerData({
+                    token: res.data.token,
+                    fName: res.data.doc.fName,
+                    lName: res.data.doc.lName,
+                    area: res.data.doc.area,
+                    email: res.data.doc.email,
+                }))
+            }
+            ).catch((err) => {
+                console.log(err)
+            })
 
         }
     }
