@@ -1,4 +1,5 @@
 export interface Manager {
+    isLogged: boolean;
     token?: string;
     email?: string;
     lName?: string;

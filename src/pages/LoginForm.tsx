@@ -59,6 +59,7 @@ const LoginForm: React.FC = () => {
                     navigate("../dash", { replace: true });
                 }
                 dispatch(managerData({
+                    isLogged:res.data.isLogged,
                     token: res.data.token,
                     fName: res.data.doc.fName,
                     lName: res.data.doc.lName,

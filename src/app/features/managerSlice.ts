@@ -7,7 +7,8 @@ const initialState: Manager = {
     email: "",
     lName: "",
     fName: "",
-    area: ""
+    area: "",
+    isLogged: false,
 };
 
 export const managerSlice = createSlice({
@@ -15,6 +16,7 @@ export const managerSlice = createSlice({
     initialState,
     reducers: {
         managerData: (state, action: PayloadAction<Manager>) => {
+            state.isLogged = action.payload.isLogged;
             state.token = action.payload.token;
             state.email = action.payload.email;
             state.lName = action.payload.lName;
@@ -22,6 +24,7 @@ export const managerSlice = createSlice({
             state.area = action.payload.area;
         },
         clearData: (state) => {
+            state.isLogged = false
             state.token = '';
             state.email = '';
             state.lName = '';
