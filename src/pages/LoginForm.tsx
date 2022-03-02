@@ -66,7 +66,7 @@ const LoginForm: React.FC = () => {
                 }))
                 
                 if (isLogged) {
-                    navigate("../dash", { replace: true });
+                    navigate("../dash/readCenters", { replace: true });
                 }
             }
             ).catch((err) => {

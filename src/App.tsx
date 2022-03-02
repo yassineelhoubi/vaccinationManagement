@@ -4,6 +4,7 @@ import { Dashboard, Home, VaccineForm, UserLayouts, LoginForm } from './pages';
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { RootState } from "./app/store";
 import { useSelector } from "react-redux"
+import { ReadCenters } from './components';
 
 function PrivateOutlet() {
 
@@ -30,9 +31,10 @@ function App() {
 
       {/* Manager Routes */}
       <Route path="/dash" element={<PrivateOutlet />} >
-        <Route index element={<Dashboard />} />
+        <Route path="" element={<Dashboard />} >
+          <Route path="readCenters" element={<ReadCenters />} />
+        </Route>
       </Route>
-
     </Routes >
   );
 }

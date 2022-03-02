@@ -54,3 +54,20 @@ export interface SnackBarProps {
     state: boolean,
     setState: Function
 }
+
+export interface ColumnTable {
+    id: 'name' | 'city' | 'area' | 'actions';
+    label: string;
+
+}
+export interface DataTable {
+    _id: string;
+    name?: string;
+    city?: string;
+    area?: string;
+    actions?: string;
+}
+export interface PropsTable {
+    data: DataTable[];
+    columns: ColumnTable[];
+}

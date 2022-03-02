@@ -11,7 +11,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { ItemList } from '../components/dashboard'
-// import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from "react-redux"
 import { clearData } from '../app/features/managerSlice';
@@ -139,9 +139,9 @@ const Dashboard: React.FC = () => {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 {/* WorkSpace */}
-                <h1>yassine</h1>
-                <button onClick={() => dispatch(clearData())}>logout</button>
-                {/* <Outlet /> */}
+
+                {/* <button onClick={() => dispatch(clearData())}>logout</button> */}
+                <Outlet />
 
                 {/*  */}
             </Box>
