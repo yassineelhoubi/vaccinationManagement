@@ -1,4 +1,4 @@
-export interface NextPrevBtnProps {
+export interface CustomBtnProps {
     name: string
 }
 export interface AgeProps {

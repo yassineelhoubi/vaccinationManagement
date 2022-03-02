@@ -1,4 +1,4 @@
-import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation, CustomizedSnackbar, CircularIndeterminate } from "../components"
+import { CustomBtn , Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation, CustomizedSnackbar, CircularIndeterminate } from "../components"
 import { useState } from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -150,13 +150,13 @@ const VaccineForm:React.FC = () => {
                     !spinnerState ?
                     <>
                         <div onClick={() => setActiveStep(activeStep - 1)}>
-                            {activeStep > 1 && < NextPrevBtn name="Previous" />}
+                            {activeStep > 1 && < CustomBtn name="Previous" />}
                         </div>
                         <div onClick={() => handleNextStep()}>
-                            {activeStep < steps.length && <NextPrevBtn name="Next" />}
+                            {activeStep < steps.length && <CustomBtn name="Next" />}
                         </div>
                         <div onClick={() => handleSubmit()}>
-                            {activeStep === 4 && <NextPrevBtn name="Submit" />}
+                            {activeStep === 4 && <CustomBtn name="Submit" />}
                         </div>
                     </>
                     :
