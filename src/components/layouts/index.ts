@@ -1,4 +1,4 @@
 export { Header } from './Header';
-export { NextPrevBtn } from './NextPrevBtn';
+export { CustomBtn } from './CustomBtn';
 export { CustomizedSnackbar } from './CustomizedSnackbar';
 export { CircularIndeterminate } from './CircularIndeterminate';

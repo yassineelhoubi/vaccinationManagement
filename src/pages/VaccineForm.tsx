@@ -1,4 +1,4 @@
-import { NextPrevBtn, Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation, CustomizedSnackbar, CircularIndeterminate } from "../components"
+import { CustomBtn , Age, ChoiceShot, DiseaseOrTreatments, SideEffects, UserFormCIN, UserInfoValidation, CustomizedSnackbar, CircularIndeterminate } from "../components"
 import { useState } from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -66,6 +66,7 @@ const VaccineForm:React.FC = () => {
             case 3:
                 setSpinnerState(true)
                 if (cin != null) {
+                    // CHECKING CIN EXISTENCE AND ALSO THE VALIDITY OF SELECTED SHOT
                     axios.get(`${process.env.REACT_APP_BASE_URL}api/user/check/${cin}/${shot}`)
                         .then((res) => {
                             setSpinnerState(false)
@@ -107,6 +108,7 @@ const VaccineForm:React.FC = () => {
             data.sideEffects2stVaccine = sideEffects
 
         }
+        // SENDING ALL USER INFOS TO DATABASE
         axios.post(`${process.env.REACT_APP_BASE_URL}api/user/registerUser`, data)
             .then((res) => {
                 setText("Your appointments has been programing, check your email")
@@ -135,7 +137,7 @@ const VaccineForm:React.FC = () => {
                         ))}
                     </Stepper>
                 </Box>
-                <div className="h-4/5 w-4/5 flex flex-col w-full h-full items-center  justify-center">
+                <div className="flex flex-col w-full h-full items-center  justify-center">
                     {activeStep == 1 && <Age setAge={setAge} />}
                     {activeStep == 2 && <ChoiceShot setShot={setShot} shot={shot} />}
                     {activeStep == 2 && shot == 1 ? <DiseaseOrTreatments setDiseaseOrTreatments={setDiseaseOrTreatments} diseaseOrTreatments={diseaseOrTreatments} /> : null}
@@ -148,13 +150,13 @@ const VaccineForm:React.FC = () => {
                     !spinnerState ?
                     <>
                         <div onClick={() => setActiveStep(activeStep - 1)}>
-                            {activeStep > 1 && < NextPrevBtn name="Previous" />}
+                            {activeStep > 1 && < CustomBtn name="Previous" />}
                         </div>
                         <div onClick={() => handleNextStep()}>
-                            {activeStep < steps.length && <NextPrevBtn name="Next" />}
+                            {activeStep < steps.length && <CustomBtn name="Next" />}
                         </div>
                         <div onClick={() => handleSubmit()}>
-                            {activeStep === 4 && <NextPrevBtn name="Submit" />}
+                            {activeStep === 4 && <CustomBtn name="Submit" />}
                         </div>
                     </>
                     :

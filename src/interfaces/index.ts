@@ -8,4 +8,9 @@ export type {
     UserInfo,
     UserData,
     SnackBarProps,
+    ColumnTable,
+    DataTable,
+    PropsTable,
 } from "./props"
+
+export type { Manager } from "./app"

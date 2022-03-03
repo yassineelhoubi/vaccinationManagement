@@ -4,7 +4,7 @@ import ButtonUnstyled, {
   buttonUnstyledClasses,
 } from '@mui/base/ButtonUnstyled';
 import { styled, Theme } from '@mui/system';
-import { NextPrevBtnProps } from '../../interfaces/props';
+import { CustomBtnProps } from '../../interfaces/props';
 
 const ButtonRoot = React.forwardRef(function ButtonRoot(
   props: React.PropsWithChildren<{}>,
@@ -118,8 +118,8 @@ const SvgButton = React.forwardRef(function SvgButton(
   return <ButtonUnstyled {...props} component={CustomButtonRoot} ref={ref} />;
 });
 
-const NextPrevBtn: React.FC<NextPrevBtnProps> = ({ name }) => {
+const CustomBtn: React.FC<CustomBtnProps> = ({ name }) => {
   return <SvgButton>{name}</SvgButton>;
 }
 
-export { NextPrevBtn }
+export { CustomBtn }
