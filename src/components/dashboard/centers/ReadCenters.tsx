@@ -3,14 +3,13 @@ import { FC, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TableData } from '../';
 import { ColumnTable } from '../../../interfaces';
+import { useFetch } from '../../../services';
 import { CustomBtn } from '../../layouts';
 
 
 const ReadCenters: FC = () => {
 
     let navigate = useNavigate();
-
-    //   const { data, error, isPending, setData: refetch } = useFetch("http://localhost:3000/api/admin/getAllManagers");
 
     function redirect(): void {
         // navigate("/", { replace: true });
@@ -23,15 +22,8 @@ const ReadCenters: FC = () => {
         { id: 'actions', label: 'Actions' }
     ]
 
-    const data = [
-        {
-            _id: "1",
-            area: "test",
-            city: "test",
-            name: "test"
+    const { data } = useFetch(`${process.env.REACT_APP_BASE_URL}api/manager/getAllCenters`);
 
-        }
-    ]
     return <div>
         <div className="mb-6 w-min" onClick={() => redirect()}>
 
