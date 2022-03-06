@@ -11,6 +11,9 @@ export type {
     ColumnTable,
     DataTable,
     PropsTable,
+    areas,
+    cities,
+    centers
 } from "./props"
 
 export type { Manager } from "./app"
