@@ -8,17 +8,27 @@ import { ReadCenters } from './components';
 import { useState } from 'react';
 import axios from 'axios';
 
-function PrivateOutlet() {
+type Props = {
+  role: string
+}
+function PrivateOutlet({ role }: Props) {
 
   let [isLogged, setIsLogged] = useState<undefined | boolean>()
-  
+
   let token = useSelector((state: RootState) => state.manager.token);
 
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
+  let url = `${process.env.REACT_APP_BASE_URL}api/manager/`
+  if (role === "manager") {
+    url = url + "isManager"
+  }
+  else {
+    url = url + "isAdmin"
+  }
 
-  axios.get(`${process.env.REACT_APP_BASE_URL}api/manager/isManager`, config)
+  axios.get(url, config)
     .then((res) => {
       return setIsLogged(res.data.message);
     }).catch((err) => {
@@ -27,6 +37,11 @@ function PrivateOutlet() {
 
   if (isLogged === undefined) return null;
   return isLogged === true ? <Outlet /> : <Navigate to="/auth" />;
+}
+function Test() {
+  return (
+    <h1>test</h1>
+  )
 }
 function App() {
 
@@ -44,11 +59,19 @@ function App() {
       <Route path="auth" element={<LoginForm />} />
 
       {/* Manager Routes */}
-      <Route path="/dash" element={<PrivateOutlet />} >
+      <Route path="/dash-m" element={<PrivateOutlet role="manager" />} >
         <Route path="" element={<Dashboard />} >
           <Route path="readCenters" element={<ReadCenters />} />
         </Route>
       </Route>
+
+      {/* Admin Routes */}
+      <Route path="/dash-a" element={<PrivateOutlet role="admin" />} >
+        <Route path="" element={<Dashboard />} >
+          <Route path="test" element={<Test />} />
+        </Route>
+      </Route>
+
     </Routes >
   );
 }
