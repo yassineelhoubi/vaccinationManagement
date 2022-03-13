@@ -29,13 +29,30 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
 
     const [data, setData ] = useState<areas[]>([])
     const [cities, setCities ] = useState<cities[]>([])
-    const [centers, setCenters ] = useState<centers>()
+    const [centers, setCenters ] = useState<centers>({
+        status : false,
+        message : [{
+            _id: "",
+            name: "",
+            city: "",
+            area: "",
+            createdBy: "",
+            createdAt: "",
+            updatedAt: ""
+        }]
+    })
 
     const getCenters = (region : string , city : string ) => {
-        console.log("this is region and city : ",region," ", city);
-        axios.get(`http://localhost:4000/api/manager/getAllCenters?area=${region}&city=${city}`)
+
+        let based_url : string = "http://localhost:4000/api/manager/getAllCenters"
+
+        if (region && city ){
+            based_url = `${based_url}?area=${region}&city=${city}`
+        }
+        console.log("this is based_url" + based_url)
+        axios.get(based_url)
         .then((res) => {
-            console.log(res.data);
+            console.log("this data coming from area and center", res.data.message);
             setCenters(res.data);
         })
         .catch((error) => {
@@ -124,15 +141,13 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
                 </Select>
             </FormControl>
             
-                {/* <TextField size="small" value={userInfo.city} id="city" margin="normal" label="City" variant="outlined" /> */}
-                {/* <TextField size="small" value={userInfo.address} id="address" margin="normal" label="Address" variant="outlined" /> */}
             </div>
             <div className="flex w-full justify-center items-center lg:flex-row flex-col">
             <FormControl required sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-required-label">Cities</InputLabel>
                 <Select labelId="demo-simple-select-required-label" id="demo-simple-select-required" value={center.center} label="Center *" onChange={pickCenter}>
-                { (centers || {message : []})?.message.length > 0 && (centers || {message : []}).message.map((center) => ( <MenuItem key={center.area} value={center.city} data-datax={center.city}>{center.name}</MenuItem> )) }
-                {/* { (centers || {message : []})?.message.length > 0 && (centers || {message : []}).message.map((center) => ( <MenuItems key={center.area} value={center.city} data-datax={center.city}>{center.name}</MenuItems> )) } */}
+                { (centers.status && Array.isArray(centers.message)) && centers.message.map((center) => ( <MenuItem key={center._id} value={center.city} data-datax={center.city}>{center.name}</MenuItem> )) || (<MenuItem>no center right now!</MenuItem>)}
+                {/* { (centers || {message : []})?.message?.length > 0 && (centers || {message : []}).message.map((center) => ( <MenuItem key={center.area} value={center.city} data-datax={center.city}>{center.name}</MenuItem> )) } */}
                 </Select>
             </FormControl>
                 

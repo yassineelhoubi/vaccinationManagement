@@ -71,15 +71,6 @@ export interface PropsTable {
     data: DataTable[];
     columns: ColumnTable[];
 }
-// export interface area {
-//     areas? : areas[],
-// }
-// export interface city {
-//     cities? : cities[]
-// }
-// export interface center {
-//     centers? : centers[]
-// }
 export interface areas {
     id : string,
     region : string
@@ -90,10 +81,10 @@ export interface cities {
     region : string
 }
 export interface centers {
-    status : string,
-    message : centerProp[],
+    status : boolean,
+    message : centerT[],
 }
-type centerProp = {
+type centerT = {
     _id: string
     name: string
     city: string
