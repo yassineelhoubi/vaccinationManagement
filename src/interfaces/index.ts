@@ -16,4 +16,4 @@ export type {
     centers
 } from "./props"
 
-export type { Manager } from "./app"
+export type { Manager, Admin } from "./app"

@@ -16,6 +16,7 @@ import * as Yup from "yup"
 import { login } from '../services';
 import { useNavigate, useParams } from 'react-router-dom';
 import { managerData } from '../app/features/managerSlice';
+import { setAdminData } from '../app/features/adminSlice';
 import { CustomizedSnackbar, CircularIndeterminate } from "../components"
 import { AlertColor } from "@mui/material";
 import { useState } from 'react';
@@ -56,6 +57,10 @@ const LoginForm: React.FC = () => {
                 setSpinnerState(false)
                 const isLogged = res?.data.isLogged
                 if(isLogged && actor ==="admin"){
+                    dispatch(setAdminData({
+                        isLogged: res.data.isLogged,
+                        token: res.data.token,
+                    }))
                     navigate("../dash-a/test", { replace: true });
                 }
                 if (isLogged && !actor) {
