@@ -57,6 +57,7 @@ function App() {
 
       {/* login */}
       <Route path="auth" element={<LoginForm />} />
+      <Route path="auth/:actor" element={<LoginForm />} />
 
       {/* Manager Routes */}
       <Route path="/dash-m" element={<PrivateOutlet role="manager" />} >
@@ -66,7 +67,7 @@ function App() {
       </Route>
 
       {/* Admin Routes */}
-      <Route path="/dash-a" element={<PrivateOutlet role="admin" />} >
+      <Route path="/dash-a" element={<Outlet/>} >
         <Route path="" element={<Dashboard />} >
           <Route path="test" element={<Test />} />
         </Route>

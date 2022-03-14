@@ -14,7 +14,7 @@ import { useFormik } from "formik"
 import { useDispatch } from "react-redux"
 import * as Yup from "yup"
 import { login } from '../services';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { managerData } from '../app/features/managerSlice';
 import { CustomizedSnackbar, CircularIndeterminate } from "../components"
 import { AlertColor } from "@mui/material";
@@ -36,8 +36,7 @@ const LoginForm: React.FC = () => {
 
 
     let navigate = useNavigate();
-
-
+    let { actor } = useParams()
     let dispatch = useDispatch()
 
     const formik = useFormik({
@@ -52,20 +51,22 @@ const LoginForm: React.FC = () => {
         enableReinitialize: true,
         onSubmit: async (values: any) => {
             setSpinnerState(true)
+            values.role = actor
             await login(values).then((res) => {
                 setSpinnerState(false)
                 const isLogged = res?.data.isLogged
-
-                dispatch(managerData({
-                    isLogged: res.data.isLogged,
-                    token: res.data.token,
-                    fName: res.data.doc.fName,
-                    lName: res.data.doc.lName,
-                    area: res.data.doc.area,
-                    email: res.data.doc.email,
-                }))
-                
-                if (isLogged) {
+                if(isLogged && actor ==="admin"){
+                    navigate("../dash-a/test", { replace: true });
+                }
+                if (isLogged && !actor) {
+                    dispatch(managerData({
+                        isLogged: res.data.isLogged,
+                        token: res.data.token,
+                        fName: res.data.doc.fName,
+                        lName: res.data.doc.lName,
+                        area: res.data.doc.area,
+                        email: res.data.doc.email,
+                    }))
                     navigate("../dash-m/readCenters", { replace: true });
                 }
             }
