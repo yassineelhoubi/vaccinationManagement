@@ -1,5 +1,5 @@
 import FormControl from '@mui/material/FormControl';
-import { FormHelperText, FormLabel, InputLabel, MenuItem, Select, SelectChangeEvent, TextField } from '@mui/material';
+import { FormHelperText, FormLabel, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField } from '@mui/material';
 import { UserInfoProps, UserInfo, areas, cities, centers } from '../../interfaces';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -23,7 +23,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
         region: ""
     });
     const [ center , setCenter ] = useState({
-        center : "",
+        name : "",
     });
     
 
@@ -72,25 +72,27 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
         })
     }
 
-    const pickArea = (event: SelectChangeEvent) => {
-
-        const obj = data.filter( (element) => { return element.region == event.target.value});
-        setArea(obj[0]);
-        getCities(+obj[0].id)
-        
-    };
-
+    const pickCenter= (event: SelectChangeEvent) => {
+        console.log("inside pick center function 👋 ")
+        console.log("event target value is :" , event.target.value );
+        setCenter({name : event.target.value});
+        console.log("the chosen center is " + center.name)
+        // getCenters(area.region, obj[0].ville)
+    }
+    
     const pickCity= (event: SelectChangeEvent) => {
         const obj = cities.filter( (element) => { return element.ville == event.target.value});
         setCity(obj[0]);
         getCenters(area.region, obj[0].ville)
     }
 
-    const pickCenter= (event: SelectChangeEvent) => {
+    const pickArea = (event: SelectChangeEvent) => {
+        const obj = data.filter( (element) => { return element.region == event.target.value});
+        setArea(obj[0]);
+        getCities(+obj[0].id)
         
-        setCenter({center : event.target.value});
-        // getCenters(area.region, obj[0].ville)
-    }
+    };
+
 
     const getData = () => {
         
@@ -112,48 +114,46 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
 
 
     return (
+            <FormControl onChange={(e) => handleChange(e)} sx={{
+                mx: "auto",
+                '& .MuiTextField-root': { m: 1, width: '100%' },
+            }}>
+                <FormLabel className="text-wider mb-3 lg:flex lg:justify-center hidden">Validate Your Information </FormLabel>
+                <div className="flex w-full justify-center items-center lg:flex-row flex-col">
+                    <TextField size="small" value={userInfo.fName} id="fName" margin="normal" label="First Name" variant="outlined" />
+                    <TextField size="small" value={userInfo.lName} id="lName" margin="normal" label="Last Name" variant="outlined" />
+                </div>
+                <div className="flex w-full justify-center items-center lg:flex-row flex-col">
+                    <TextField size="small" value={userInfo.nbrPhone} type="number" id="nbrPhone" margin="normal" label="Phone" variant="outlined" />
+                    <TextField size="small" value={userInfo.email} id="email" margin="normal" label="Email" variant="outlined" />
+                </div>
+                <div className="flex w-full justify-between items-center lg:flex-row flex-col">
+                <FormControl size="small" required sx={{ m: 1, width: 1 }} fullWidth>
+                    <InputLabel id="demo-simple-select-required-label">Areas</InputLabel>
+                    <Select labelId="demo-simple-select-required-label" id="demo-simple-select-required" value={area.region} label="Area *" onChange={pickArea}>
+                    { data && data.map((d) => ( <MenuItem key={d.id} value={d.region} data-datax={d.region}>{d.region}</MenuItem> )) }
+                    </Select>
+                </FormControl>
 
-        <FormControl onChange={(e) => handleChange(e)} sx={{
-            mx: "auto",
-            '& .MuiTextField-root': { m: 1, width: '100%' },
-        }}>
-            <FormLabel className="text-wider mb-3 lg:flex lg:justify-center hidden">Validate Your Information </FormLabel>
-            <div className="flex w-full justify-center items-center lg:flex-row flex-col">
-                <TextField size="small" value={userInfo.fName} id="fName" margin="normal" label="First Name" variant="outlined" />
-                <TextField size="small" value={userInfo.lName} id="lName" margin="normal" label="Last Name" variant="outlined" />
-            </div>
-            <div className="flex w-full justify-center items-center lg:flex-row flex-col">
-                <TextField size="small" value={userInfo.nbrPhone} type="number" id="nbrPhone" margin="normal" label="Phone" variant="outlined" />
-                <TextField size="small" value={userInfo.email} id="email" margin="normal" label="Email" variant="outlined" />
-            </div>
-            <div className="flex w-full justify-center items-center lg:flex-row flex-col">
-            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-required-label">Areas</InputLabel>
-                <Select labelId="demo-simple-select-required-label" id="demo-simple-select-required" value={area.region} label="Area *" onChange={pickArea}>
-                { data && data.map((d) => ( <MenuItem key={d.id} value={d.region} data-datax={d.region}>{d.region}</MenuItem> )) }
-                </Select>
-            </FormControl>
-
-            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-required-label2">Cities</InputLabel>
-                <Select labelId="demo-simple-select-required-label2" id="demo-simple-select-required" value={city.ville} label="City *" onChange={pickCity}>
-                { cities.length > 0 && cities.map((city) => ( <MenuItem key={city.id} value={city.ville} data-datax={city.ville}>{city.ville}</MenuItem> )) }
-                </Select>
-            </FormControl>
-            
-            </div>
-            <div className="flex w-full justify-center items-center lg:flex-row flex-col">
-            <FormControl required sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-required-label">Cities</InputLabel>
-                <Select labelId="demo-simple-select-required-label" id="demo-simple-select-required" value={center.center} label="Center *" onChange={pickCenter}>
-                { (centers.status && Array.isArray(centers.message)) && centers.message.map((center) => ( <MenuItem key={center._id} value={center.city} data-datax={center.city}>{center.name}</MenuItem> )) || (<MenuItem>no center right now!</MenuItem>)}
-                {/* { (centers || {message : []})?.message?.length > 0 && (centers || {message : []}).message.map((center) => ( <MenuItem key={center.area} value={center.city} data-datax={center.city}>{center.name}</MenuItem> )) } */}
-                </Select>
-            </FormControl>
+                <FormControl size="small" required sx={{ m: 1, width: 1 }}>
+                    <InputLabel id="demo-simple-select-required-label2">Cities</InputLabel>
+                    <Select labelId="demo-simple-select-required-label2" id="demo-simple-select-required2" value={city.ville} label="City *" onChange={pickCity}>
+                    { cities.length > 0 && cities.map((city) => ( <MenuItem key={city.id} value={city.ville}>{city.ville}</MenuItem> )) }
+                    </Select>
+                </FormControl>
                 
-            </div>
+                </div>
+                <div className="flex w-full justify-center items-center lg:flex-row flex-col">
+                <FormControl size="small" required sx={{ m: 1, width: 1 }}>
+                    <InputLabel id="demo-simple-select-required-label3">Centers</InputLabel>
+                    <Select labelId="demo-simple-select-required-label3" id="demo-simple-select-required3" value={center.name} label="Center *" onChange={pickCenter}>
+                    { (centers.status && Array.isArray(centers.message)) && centers.message.map((center) => ( <MenuItem key={center._id} value={center.name} >{center.name}</MenuItem> )) || (<MenuItem disabled value="">no center right now!</MenuItem>)}
+                    </Select>
+                </FormControl>
+                    
+                </div>
 
-        </FormControl>
+            </FormControl>
 
     )
 }
