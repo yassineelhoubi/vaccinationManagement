@@ -7,3 +7,7 @@ export interface Manager {
     area?: string;
     password?: string;
 }
+export interface Admin {
+    isLogged: boolean;
+    token?: string;
+}
