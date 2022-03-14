@@ -44,7 +44,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
 
     const getCenters = (region : string , city : string ) => {
 
-        let based_url : string = `${process.env.REACT_APP_BASE_URL}/api/manager/getAllCenters`
+        let based_url : string = `${process.env.REACT_APP_BASE_URL}api/user/getAllCenters`
 
         if (region && city ){
             based_url = `${based_url}?area=${region}&city=${city}`
