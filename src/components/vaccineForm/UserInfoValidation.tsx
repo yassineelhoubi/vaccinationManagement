@@ -44,7 +44,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
 
     const getCenters = (region : string , city : string ) => {
 
-        let based_url : string = "http://localhost:4000/api/manager/getAllCenters"
+        let based_url : string = `${process.env.REACT_APP_BASE_URL}/api/manager/getAllCenters`
 
         if (region && city ){
             based_url = `${based_url}?area=${region}&city=${city}`
@@ -62,7 +62,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
 
     const getCities = (id : number) => {
         console.log("this is id : ",id);
-        axios.get(`https://calm-fjord-14795.herokuapp.com/api/villes/${id}`)
+        axios.get(`${process.env.REACT_APP_GET_CITIES_BY_AREA_API}/${id}`)
         .then((res) => {
             console.log(res.data);
             setCities(res.data);
@@ -96,7 +96,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
 
     const getData = () => {
         
-        axios.get(`https://calm-fjord-14795.herokuapp.com/api/regions`)
+        axios.get(`${process.env.REACT_APP_AREAS_API}`)
         .then((res) => {
             console.log(res.data);
             setData(res.data);
@@ -129,14 +129,14 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
                 </div>
                 <div className="flex w-full justify-between items-center lg:flex-row flex-col">
                 <FormControl size="small" required sx={{ m: 1, width: 1 }} fullWidth>
-                    <InputLabel id="demo-simple-select-required-label">Areas</InputLabel>
+                    <InputLabel id="area">Areas</InputLabel>
                     <Select labelId="demo-simple-select-required-label" id="demo-simple-select-required" value={area.region} label="Area *" onChange={pickArea}>
                     { data && data.map((d) => ( <MenuItem key={d.id} value={d.region} data-datax={d.region}>{d.region}</MenuItem> )) }
                     </Select>
                 </FormControl>
 
                 <FormControl size="small" required sx={{ m: 1, width: 1 }}>
-                    <InputLabel id="demo-simple-select-required-label2">Cities</InputLabel>
+                    <InputLabel id="city">Cities</InputLabel>
                     <Select labelId="demo-simple-select-required-label2" id="demo-simple-select-required2" value={city.ville} label="City *" onChange={pickCity}>
                     { cities.length > 0 && cities.map((city) => ( <MenuItem key={city.id} value={city.ville}>{city.ville}</MenuItem> )) }
                     </Select>
@@ -145,7 +145,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
                 </div>
                 <div className="flex w-full justify-center items-center lg:flex-row flex-col">
                 <FormControl size="small" required sx={{ m: 1, width: 1 }}>
-                    <InputLabel id="demo-simple-select-required-label3">Centers</InputLabel>
+                    <InputLabel id="centre">Centers</InputLabel>
                     <Select labelId="demo-simple-select-required-label3" id="demo-simple-select-required3" value={center.name} label="Center *" onChange={pickCenter}>
                     { (centers.status && Array.isArray(centers.message)) && centers.message.map((center) => ( <MenuItem key={center._id} value={center.name} >{center.name}</MenuItem> )) || (<MenuItem disabled value="">no center right now!</MenuItem>)}
                     </Select>
