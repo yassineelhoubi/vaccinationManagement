@@ -20,12 +20,12 @@ function PrivateOutlet({ role }: Props) {
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
-  let url = `${process.env.REACT_APP_BASE_URL}api/manager/`
+  let url = `${process.env.REACT_APP_BASE_URL}api/`
   if (role === "manager") {
-    url = url + "isManager"
+    url = url + "manager/isManager"
   }
   else {
-    url = url + "isAdmin"
+    url = url + "admin/isAdmin"
   }
 
   axios.get(url, config)
@@ -67,7 +67,7 @@ function App() {
       </Route>
 
       {/* Admin Routes */}
-      <Route path="/dash-a" element={<Outlet/>} >
+      <Route path="/dash-a" element={<PrivateOutlet role="admin" />} >
         <Route path="" element={<Dashboard />} >
           <Route path="test" element={<Test />} />
         </Route>
