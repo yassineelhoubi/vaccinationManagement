@@ -1,6 +1,6 @@
 import FormControl from '@mui/material/FormControl';
 import { FormHelperText, FormLabel, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, Stack, TextField } from '@mui/material';
-import { UserInfoProps, UserInfo, areas, cities, centers } from '../../interfaces';
+import { UserInfoProps, UserInfo, Areas, Cities, Centers } from '../../interfaces';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -13,11 +13,11 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
         setUserInfo(newData)
     }
 
-    const [area , setArea ] = useState<areas>({
+    const [area , setArea ] = useState<Areas>({
         id : "",
         region : "",
     });
-    const [ city , setCity ] = useState<cities>({
+    const [ city , setCity ] = useState<Cities>({
         id : "",
         ville : "",
         region: ""
@@ -27,9 +27,9 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
     });
     
 
-    const [data, setData ] = useState<areas[]>([])
-    const [cities, setCities ] = useState<cities[]>([])
-    const [centers, setCenters ] = useState<centers>({
+    const [data, setData ] = useState<Areas[]>([])
+    const [cities, setCities ] = useState<Cities[]>([])
+    const [centers, setCenters ] = useState<Centers>({
         status : false,
         message : [{
             _id: "",
@@ -44,7 +44,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
 
     const getCenters = (region : string , city : string ) => {
 
-        let based_url : string = `${process.env.REACT_APP_BASE_URL}api/user/getAllCenters`
+        let based_url : string = `${process.env.REACT_APP_BASE_URL}api/manager/getAllCenters`
 
         if (region && city ){
             based_url = `${based_url}?area=${region}&city=${city}`
@@ -64,7 +64,7 @@ const UserInfoValidation: React.FC<UserInfoProps> = ({ setUserInfo, userInfo }) 
         console.log("this is id : ",id);
         axios.get(`${process.env.REACT_APP_GET_CITIES_BY_AREA_API}/${id}`)
         .then((res) => {
-            console.log(res.data);
+            console.log("this is "+res.data);
             setCities(res.data);
         })
         .catch((error) => {

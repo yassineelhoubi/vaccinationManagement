@@ -31,6 +31,8 @@ export interface UserInfo {
     fName: string;
     lName: string;
     city: string;
+    center : string;
+    area : string;
     nbrPhone: number;
 }
 
@@ -71,16 +73,16 @@ export interface PropsTable {
     data: DataTable[];
     columns: ColumnTable[];
 }
-export interface areas {
+export interface Areas {
     id : string,
     region : string
 }
-export interface cities {
+export interface Cities {
     id : string,
     ville : string,
     region : string
 }
-export interface centers {
+export interface Centers {
     status : boolean,
     message : centerT[],
 }

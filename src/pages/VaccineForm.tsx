@@ -27,7 +27,9 @@ const VaccineForm:React.FC = () => {
         address: "",
         fName: "",
         lName: "",
+        center : "",
         city: "",
+        area : "",
         nbrPhone: 0,
     })
 
