@@ -15,19 +15,23 @@ function PrivateOutlet({ role }: Props) {
 
   let [isLogged, setIsLogged] = useState<undefined | boolean>()
 
-  let token = useSelector((state: RootState) => state.manager.token);
+  let ManagerToken = useSelector((state: RootState) => state.manager.token);
+  let adminToken = useSelector((state: RootState) => state.admin.token);
+  let token: string | undefined = ""
 
+  let url = `${process.env.REACT_APP_BASE_URL}api/`
+  if (role === "manager") {
+    url = url + "manager/isManager";
+    token = ManagerToken;
+  }
+  else {
+    url = url + "admin/isAdmin";
+    token = adminToken;
+  }
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
-  let url = `${process.env.REACT_APP_BASE_URL}api/`
-  if (role === "manager") {
-    url = url + "manager/isManager"
-  }
-  else {
-    url = url + "admin/isAdmin"
-  }
-
+  
   axios.get(url, config)
     .then((res) => {
       return setIsLogged(res.data.message);
