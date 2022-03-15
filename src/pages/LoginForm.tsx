@@ -61,7 +61,7 @@ const LoginForm: React.FC = () => {
                         isLogged: res.data.isLogged,
                         token: res.data.token,
                     }))
-                    navigate("../dash-a/test", { replace: true });
+                    navigate("../dash-a/readManagers", { replace: true });
                 }
                 if (isLogged && !actor) {
                     dispatch(managerData({
