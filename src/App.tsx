@@ -1,6 +1,6 @@
 
 import './App.css';
-import { Dashboard, Home, VaccineForm, UserLayouts, LoginForm } from './pages';
+import { Dashboard, Home, VaccineForm, UserLayouts, LoginForm, NotFound } from './pages';
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { RootState } from "./app/store";
 import { useSelector } from "react-redux"
@@ -31,7 +31,7 @@ function PrivateOutlet({ role }: Props) {
   const config = {
     headers: { Authorization: `Bearer ${token}` }
   };
-  
+
   axios.get(url, config)
     .then((res) => {
       return setIsLogged(res.data.message);
@@ -76,7 +76,8 @@ function App() {
           <Route path="test" element={<Test />} />
         </Route>
       </Route>
-
+      {/* 404 Not Found Page */}
+      <Route path="*" element={<NotFound />} />
     </Routes >
   );
 }
