@@ -4,7 +4,7 @@ import { Dashboard, Home, VaccineForm, UserLayouts, LoginForm, NotFound } from '
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { RootState } from "./app/store";
 import { useSelector } from "react-redux"
-import { ReadCenters } from './components';
+import { ReadCenters, ReadManagers } from './components';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -42,11 +42,7 @@ function PrivateOutlet({ role }: Props) {
   if (isLogged === undefined) return null;
   return isLogged === true ? <Outlet /> : <Navigate to="/auth" />;
 }
-function Test() {
-  return (
-    <h1>test</h1>
-  )
-}
+
 function App() {
 
 
@@ -73,7 +69,7 @@ function App() {
       {/* Admin Routes */}
       <Route path="/dash-a" element={<PrivateOutlet role="admin" />} >
         <Route path="" element={<Dashboard />} >
-          <Route path="test" element={<Test />} />
+          <Route path="readManagers" element={<ReadManagers />} />
         </Route>
       </Route>
       {/* 404 Not Found Page */}
