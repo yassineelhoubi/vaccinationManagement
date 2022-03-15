@@ -23,23 +23,19 @@ export interface CinProps {
 export interface UserInfoProps {
     setUserInfo: (val: UserInfo) => void;
     userInfo: UserInfo;
+    setVaccinLocation: (val: VaccinationLocation) => void;
 }
 
 export interface UserInfo {
-    address: string;
     email: string;
     fName: string;
     lName: string;
-    city: string;
-    center : string;
-    area : string;
     nbrPhone: number;
 }
 
 export interface UserData {
     age: number;
     shotTaken: number
-    address: string;
     email: string;
     fName: string;
     lName: string;
@@ -94,4 +90,10 @@ type centerT = {
     createdBy: string
     createdAt: string
     updatedAt: string
+}
+
+export interface VaccinationLocation {
+    area : string
+    city : string
+    center : string
 }

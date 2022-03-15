@@ -13,7 +13,8 @@ export type {
     PropsTable,
     Areas,
     Cities,
-    Centers
+    Centers,
+    VaccinationLocation
 } from "./props"
 
 export type { Manager, Admin } from "./app"
