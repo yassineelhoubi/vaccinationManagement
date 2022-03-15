@@ -31,8 +31,8 @@ export interface UserInfo {
     fName: string;
     lName: string;
     city: string;
-    center : string;
-    area : string;
+    center: string;
+    area: string;
     nbrPhone: number;
 }
 
@@ -58,7 +58,7 @@ export interface SnackBarProps {
 }
 
 export interface ColumnTable {
-    id: 'name' | 'city' | 'area' | 'actions';
+    id: 'name' | 'city' | 'area' | 'fName' | 'lName' | 'email' | 'actions';
     label: string;
 
 }
@@ -67,6 +67,9 @@ export interface DataTable {
     name?: string;
     city?: string;
     area?: string;
+    fName?:string;
+    lName?:string;
+    email?:string;
     actions?: string;
 }
 export interface PropsTable {
@@ -74,17 +77,17 @@ export interface PropsTable {
     columns: ColumnTable[];
 }
 export interface Areas {
-    id : string,
-    region : string
+    id: string,
+    region: string
 }
 export interface Cities {
-    id : string,
-    ville : string,
-    region : string
+    id: string,
+    ville: string,
+    region: string
 }
 export interface Centers {
-    status : boolean,
-    message : centerT[],
+    status: boolean,
+    message: centerT[],
 }
 type centerT = {
     _id: string
