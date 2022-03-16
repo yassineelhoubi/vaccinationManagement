@@ -1,11 +1,17 @@
 import axios from "axios"
 import { Manager } from './../interfaces';
 
-const login = async (manager: Manager) => {
+const login = async (user: any) => {
 
-    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}api/manager/login`, {
-        email: manager.email,
-        password: manager.password
+    let url = ''
+    if (user.role == "admin") {
+      url = `${process.env.REACT_APP_BASE_URL}api/admin/login`
+    } else {
+      url = `${process.env.REACT_APP_BASE_URL}api/manager/login`
+    }
+    const res = await axios.post(url, {
+        email: user.email,
+        password: user.password
     })
     return res
 

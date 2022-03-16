@@ -5,7 +5,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import axios from 'axios';
-import { UserData, UserInfo } from "../interfaces";
+import { UserData, UserInfo, VaccinationLocation } from "../interfaces";
 import { AlertColor } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
@@ -24,14 +24,18 @@ const VaccineForm:React.FC = () => {
     const [cin, setCin] = useState<string | null>(null)
     const [userInfo, setUserInfo] = useState<UserInfo>({
         email: "",
-        address: "",
         fName: "",
         lName: "",
-        city: "",
         nbrPhone: 0,
     })
 
-    // FOR CUSTOM SNACKAR
+    const [vaccinLocation , setVaccinLocation] = useState<VaccinationLocation>({
+        area : "",
+        city : "",
+        center : ""
+    })
+
+    // FOR CUSTOM SNACKBAR
     const [text, setText] = useState("there's no text right now !!!!");
     const [color, setColor] = useState<custom>("success");
     const [state, setState] = useState(false);
@@ -97,6 +101,7 @@ const VaccineForm:React.FC = () => {
         setSpinnerState(true)
         const data: UserData = {
             ...userInfo,
+            ...vaccinLocation,
             age: age,
             shotTaken: shot,
             cin: cin,
@@ -143,7 +148,7 @@ const VaccineForm:React.FC = () => {
                     {activeStep == 2 && shot == 1 ? <DiseaseOrTreatments setDiseaseOrTreatments={setDiseaseOrTreatments} diseaseOrTreatments={diseaseOrTreatments} /> : null}
                     {activeStep == 2 && (shot == 2 || shot == 3) ? <SideEffects setSideEffects={setSideEffects} sideEffects={sideEffects} /> : null}
                     {activeStep == 3 && <UserFormCIN cin={cin} setCin={setCin} />}
-                    {activeStep == 4 && <UserInfoValidation setUserInfo={setUserInfo} userInfo={userInfo} />}
+                    {activeStep == 4 && <UserInfoValidation setVaccinLocation={setVaccinLocation} setUserInfo={setUserInfo} userInfo={userInfo} />}
                 </div>
                 <div className="flex w-3/5 justify-between mb-5">
                     {

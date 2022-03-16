@@ -11,9 +11,10 @@ export type {
     ColumnTable,
     DataTable,
     PropsTable,
-    areas,
-    cities,
-    centers
+    Areas,
+    Cities,
+    Centers,
+    VaccinationLocation
 } from "./props"
 
-export type { Manager } from "./app"
+export type { Manager, Admin } from "./app"

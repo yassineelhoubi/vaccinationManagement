@@ -15,7 +15,9 @@ import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { useDispatch } from "react-redux"
 import { clearData } from '../app/features/managerSlice';
-
+import { clearAdminData } from '../app/features/adminSlice';
+import Button from '@mui/material/Button';
+import LogoutIcon from '@mui/icons-material/Logout';
 const drawerWidth = 240;
 
 const openedMixin = (theme: Theme): CSSObject => ({
@@ -101,6 +103,10 @@ const Dashboard: React.FC = () => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    const logOut = () => {
+        dispatch(clearData())
+        dispatch(clearAdminData())
+    }
 
     return (
         <Box sx={{ display: 'flex' }}>
@@ -119,9 +125,21 @@ const Dashboard: React.FC = () => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Admin Dashboard
-                    </Typography>
+                    <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        width: "100%"
+                    }}>
+
+                        <Typography variant="h6" noWrap component="div">
+                            Admin Dashboard
+                        </Typography>
+                        <Button onClick={logOut} color="inherit" variant="outlined">
+                            <LogoutIcon />
+                        </Button>
+                    </Box>
+
+
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open}>

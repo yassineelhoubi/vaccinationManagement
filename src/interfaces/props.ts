@@ -23,21 +23,19 @@ export interface CinProps {
 export interface UserInfoProps {
     setUserInfo: (val: UserInfo) => void;
     userInfo: UserInfo;
+    setVaccinLocation: (val: VaccinationLocation) => void;
 }
 
 export interface UserInfo {
-    address: string;
     email: string;
     fName: string;
     lName: string;
-    city: string;
     nbrPhone: number;
 }
 
 export interface UserData {
     age: number;
     shotTaken: number
-    address: string;
     email: string;
     fName: string;
     lName: string;
@@ -56,7 +54,7 @@ export interface SnackBarProps {
 }
 
 export interface ColumnTable {
-    id: 'name' | 'city' | 'area' | 'actions';
+    id: 'name' | 'city' | 'area' | 'fName' | 'lName' | 'email' | 'actions';
     label: string;
 
 }
@@ -65,35 +63,29 @@ export interface DataTable {
     name?: string;
     city?: string;
     area?: string;
+    fName?:string;
+    lName?:string;
+    email?:string;
     actions?: string;
 }
 export interface PropsTable {
     data: DataTable[];
     columns: ColumnTable[];
 }
-// export interface area {
-//     areas? : areas[],
-// }
-// export interface city {
-//     cities? : cities[]
-// }
-// export interface center {
-//     centers? : centers[]
-// }
-export interface areas {
-    id : string,
-    region : string
+export interface Areas {
+    id: string,
+    region: string
 }
-export interface cities {
-    id : string,
-    ville : string,
-    region : string
+export interface Cities {
+    id: string,
+    ville: string,
+    region: string
 }
-export interface centers {
-    status : string,
-    message : centerProp[],
+export interface Centers {
+    status: boolean,
+    message: centerT[],
 }
-type centerProp = {
+type centerT = {
     _id: string
     name: string
     city: string
@@ -101,4 +93,10 @@ type centerProp = {
     createdBy: string
     createdAt: string
     updatedAt: string
+}
+
+export interface VaccinationLocation {
+    area : string
+    city : string
+    center : string
 }
