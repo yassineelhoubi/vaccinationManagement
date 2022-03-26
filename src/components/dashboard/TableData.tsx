@@ -18,13 +18,10 @@ import { Box } from '@mui/material';
 
 
 
-const TableData: React.FC<PropsTable> = ({ data, columns: headers }) => {
+const TableData: React.FC<PropsTable> = ({ data, columns}) => {
   let dispatch = useDispatch()
-  // columns => table headers
-  const columns: readonly ColumnTable[] = headers.map(e => e);
-  // rows => data
-  let rows: DataTable[] = data.map((row) => row)
-  // pagination
+
+  // // pagination
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -64,7 +61,7 @@ const TableData: React.FC<PropsTable> = ({ data, columns: headers }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows
+            {data
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row) => {
                 return (
@@ -72,7 +69,7 @@ const TableData: React.FC<PropsTable> = ({ data, columns: headers }) => {
                     {columns.map((column) => {
                       const value = row[column.id];
                       return (
-                        <TableCell key={column.id} sx={{ width: `${headers.length / 100}` }} >
+                        <TableCell key={column.id} sx={{ width: `${columns.length / 100}` }} >
                           {column.id == "actions" ?
                             <Box>
                               <Button onClick={() => openDeleteModal(row._id)} variant="outlined" >
@@ -94,7 +91,7 @@ const TableData: React.FC<PropsTable> = ({ data, columns: headers }) => {
       <TablePagination
         rowsPerPageOptions={[10, 25, 100]}
         component="div"
-        count={rows.length}
+        count={data.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}
